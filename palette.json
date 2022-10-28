@@ -1,0 +1,264 @@
+{
+  "primary": {
+    "black": {
+      "termcol": "black",
+      "index": 0,
+      "hex": "#1C1B19",
+      "rgb": [28, 27, 25],
+      "var": "g:srcery_black",
+      "hsl": [40, "6%", "10%"]
+    },
+    "red": {
+      "termcol": "#EF2F27",
+      "index": 1,
+      "hex": "#EF2F27",
+      "rgb": [239, 47, 39],
+      "hsl": [2, "86%", "55%"],
+      "var": "g:srcery_red"
+    },
+    "green": {
+      "termcol": "green",
+      "index": 2,
+      "hex": "#EF2f27",
+      "rgb": [81, 159, 80],
+      "hsl": [119, "33%", "47%"],
+      "var": "g:srcery_green"
+    },
+    "yellow": {
+      "termcol": "yellow",
+      "index": 3,
+      "hex": "#FBB829",
+      "rgb": [251, 184, 41],
+      "hsl": [41, "96%", "57%"],
+      "var": "g:srcery_yellow"
+    },
+    "blue": {
+      "termcol": "blue",
+      "index": 4,
+      "hex": "#2C78BF",
+      "rgb": [44, 120, 191],
+      "hsl": [209, "63%", "46%"],
+      "var": "g:srcery_blue"
+    },
+    "magenta": {
+      "termcol": "magenta",
+      "index": 5,
+      "hex": "#E02C6D",
+      "rgb": [224, 44, 109],
+      "hsl": [338, "74%", "53%"],
+      "var": "g:srcery_magenta"
+    },
+    "cyan": {
+      "termcol": "cyan",
+      "index": 6,
+      "hex": "#0AAEB3",
+      "rgb": [10, 174, 179],
+      "hsl": [182, "89%", "37%"],
+      "var": "g:srcery_cyan"
+    },
+    "white": {
+      "termcol": "white",
+      "index": 7,
+      "hex": "#BAA67F",
+      "rgb": [186, 166, 127],
+      "hsl": [40, "30%", "61%"],
+      "var": "g:srcery_white"
+    },
+    "bright_black": {
+      "termcol": "brightblack",
+      "index": 8,
+      "hex": "#918175",
+      "rgb": [145, 129, 117],
+      "hsl": [26, "11%", "51%"],
+      "var": "g:srcery_bright_black"
+    },
+    "bright_red": {
+      "termcol": "brightred",
+      "index": 9,
+      "hex": "#F75341",
+      "rgb": [247, 83, 65],
+      "hsl": [6, "92%", "61%"],
+      "var": "g:srcery_bright_red"
+    },
+    "bright_green": {
+      "termcol": "brightgreen",
+      "index": 10,
+      "hex": "#98BC37",
+      "rgb": [152, 188, 55],
+      "hsl": [76, "55%", "48%"],
+      "var": "g:srcery_bright_green"
+    },
+    "bright_yellow": {
+      "termcol": "brightyellow",
+      "index": 11,
+      "hex": "#FED06E",
+      "rgb": [254, 208, 110],
+      "hsl": [41, "99%", "71%"],
+      "var": "g:srcery_bright_yellow"
+    },
+    "bright_blue": {
+      "termcol": "brightblue",
+      "index": 12,
+      "hex": "#68A8E4",
+      "rgb": [104, 168, 228],
+      "hsl": [209, "70%", "65%"],
+      "var": "g:srcery_bright_blue"
+    },
+    "bright_magenta": {
+      "termcol": "brightmagenta",
+      "index": 13,
+      "hex": "#FF5C8F",
+      "rgb": [255, 92, 143],
+      "hsl": [341, "100%", "68%"],
+      "var": "g:srcery_bright_magenta"
+    },
+    "bright_cyan": {
+      "termcol": "brightcyan",
+      "index": 14,
+      "hex": "#2BE4D0",
+      "rgb": [43, 228, 208],
+      "hsl": [174, "77%", "53%"],
+      "var": "g:srcery_bright_cyan"
+    },
+    "bright_white": {
+      "termcol": "brightwhite",
+      "index": 15,
+      "hex": "#FCE8C3",
+      "rgb": [252, 232, 195],
+      "hsl": [39, "90%", "88%"],
+      "var": "g:srcery_bright_white"
+    }
+  },
+  "secondary": {
+    "orange": {
+      "termcol": null,
+      "index": 202,
+      "hex": "#FF5F00",,
+      "rgb": [255, 95, 0],
+      "hsl": [22, "100%", "50%"],
+      "var": "g:srcery_orange"
+    },
+    "bright_orange": {
+      "termcol": null,
+      "index": 208,
+      "hex": "#FF8700",
+      "rgb": [255, 135, 0],
+      "hsl": [32, "100%", "50%"],
+      "var": "g:srcery_bright_orange"
+    },
+    "hard_black": {
+      "termcol": null,
+      "index": 233,
+      "hex": "#121212",
+      "rgb": [18, 18, 18],
+      "hsl": [0, "0%", "7%"],
+      "var": "g:srcery_hard_black"
+    },
+    "teal": {
+      "termcol": null,
+      "index": 30,
+      "hex": "#008080",
+      "rgb": [0, 128, 128],
+      "hsl": [180, "100%", "25%"],
+      "var": null
+    },
+    "xgray1": {
+      "termcol": "gray15",
+      "index": 235,
+      "hex": "#262626",
+      "rgb": [38, 38, 38],
+      "hsl": [0, "0%", "15%"],
+      "var": "g:srcery_xgray1"
+    },
+    "xgray2": {
+      "termcol": "gray19",
+      "index": 236,
+      "hex": "#303030",
+      "rgb": [48, 48, 48],
+      "hsl": [0, "0%", "19%"],
+      "var": "g:srcery_xgray2"
+    },
+    "xgray3": {
+      "termcol": null,
+      "index": 237,
+      "hex": "#3A3A3A",
+      "rgb": [58, 58, 58],
+      "hsl": [0, "0%", "23%"],
+      "var": "g:srcery_xgray3"
+    },
+    "xgray4": {
+      "termcol": null,
+      "index": 238,
+      "hex": "#444444",
+      "rgb": [68, 68, 68],
+      "hsl": [0, "0%", "27%"],
+      "var": "g:srcery_xgray4"
+    },
+    "xgray5": {
+      "termcol": null,
+      "index": 239,
+      "hex": "#4E4E4E",
+      "rgb": [78, 78, 78],
+      "hsl": [0, "0%", "31%"],
+      "var": "g:srcery_xgray5"
+    },
+    "xgray6": {
+      "termcol": null,
+      "index": 240,
+      "hex": "#585858",
+      "rgb": [88, 88, 88],
+      "hsl": [0, "0%", "35%"],
+      "var": "g:srcery_xgray6"
+    },
+    "xgray7": {
+      "termcol": null,
+      "index": 241,
+      "hex": "#626262",
+      "rgb": [98, 98, 98],
+      "hsl": [0, "0%", "38%"],
+      "var": null
+    },
+    "xgray8": {
+      "termcol": null,
+      "index": 242,
+      "hex": "#6C6C6C",
+      "rgb": [108, 108, 108],
+      "hsl": [0, "0%", "42%"],
+      "var": null
+    },
+    "xgray9": {
+      "termcol": null,
+      "index": 243,
+      "hex": "#767676",
+      "rgb": [118, 118, 118],
+      "hsl": [0, "0%", "46%"],
+      "var": null
+    },
+
+    "xgray10": {
+      "termcol": null,
+      "index": 244,
+      "hex": "#808080",
+      "rgb": [128, 128, 128],
+      "hsl": [0, "0%", "50%"],
+      "var": null
+    },
+
+    "xgray11": {
+      "termcol": null,
+      "index": 245,
+      "hex": "#8A8A8A",
+      "rgb": [138, 138, 138],
+      "hsl": [0, "0%", "54%"],
+      "var": null
+    },
+    "xgray12": {
+      "termcol": null,
+      "index": 246,
+      "hex": "#949494",
+      "rgb": [148, 148, 148],
+      "hsl": [0, "0%", "58%"],
+      "var": null
+    }
+  }
+}

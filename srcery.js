@@ -1,2 +1,2 @@
-import srcery from "../palette.json"
-export default srcery
+import srcery from "../palette.json";
+export default srcery;

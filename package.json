@@ -1,5 +1,5 @@
 {
-  "name": "srcery-palette",
+  "name": "@srcery-colors/palette",
   "version": "1.0.0",
   "description": "Srcery palette",
   "main": "srcery.js",

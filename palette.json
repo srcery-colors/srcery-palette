@@ -133,7 +133,7 @@
     "orange": {
       "termcol": null,
       "index": 202,
-      "hex": "#FF5F00",,
+      "hex": "#FF5F00",
       "rgb": [255, 95, 0],
       "hsl": [22, "100%", "50%"],
       "var": "g:srcery_orange"

@@ -1,2 +1,1 @@
-import srcery from "./palette.json";
-export default srcery;
+module.exports = require("./palette.json");

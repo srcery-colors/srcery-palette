@@ -1,0 +1,25 @@
+{
+  "name": "srcery-palette",
+  "version": "1.0.0",
+  "description": "Srcery palette",
+  "main": "srcery.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srcery-colors/srcery-palette.git"
+  },
+  "keywords": [
+    "palette",
+    "npm",
+    "json",
+    "srcery"
+  ],
+  "author": "roosta <mail@roosta.sh>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/srcery-colors/srcery-palette/issues"
+  },
+  "homepage": "https://github.com/srcery-colors/srcery-palette#readme"
+}

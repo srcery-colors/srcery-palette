@@ -1,8 +1,8 @@
 {
-  "name": "@srcery-colors/palette",
+  "name": "@srcery-colors/srcery-palette",
   "version": "1.0.0",
   "main": "./srcery.js",
-  "description": "Srcery palette",
+  "description": "Srcery palette exposed as a package, used in other projects",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

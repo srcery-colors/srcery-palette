@@ -19,7 +19,7 @@
     "green": {
       "termcol": "green",
       "index": 2,
-      "hex": "#EF2f27",
+      "hex": "#519F50",
       "rgb": [81, 159, 80],
       "hsl": [119, "33%", "47%"],
       "var": "g:srcery_green"

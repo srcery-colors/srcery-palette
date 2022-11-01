@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "./srcery.js",
   "description": "Srcery palette exposed as a package, used in other projects",
+  "publishConfig": {
+    "@srcery-colors:registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -9,7 +9,7 @@
       "hsl": [40, "6%", "10%"]
     },
     "red": {
-      "termcol": "#EF2F27",
+      "termcol": "red",
       "index": 1,
       "hex": "#EF2F27",
       "rgb": [239, 47, 39],

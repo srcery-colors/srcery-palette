@@ -1,6 +1,6 @@
 {
   "name": "@srcery-colors/srcery-palette",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./srcery.js",
   "description": "Srcery palette exposed as a package, used in other projects",
   "scripts": {

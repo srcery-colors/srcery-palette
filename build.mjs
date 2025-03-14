@@ -4,8 +4,7 @@
  * Srcery Build Script
  *
  * This script builds the srcery.css CSS variable file included in package from
- * version 1.1.0 onward. The output (srcery.css) is tracked in git, but should
- * not be edited directly, instead
+ * version 1.1.0 onward.
  *
  * Usage: node build.mjs
  */

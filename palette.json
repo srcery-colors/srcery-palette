@@ -1,6 +1,7 @@
 {
   "primary": {
     "black": {
+      "css": "--srcery-palette-primary-black",
       "hex": "#1C1B19",
       "hsl": [40, "6%", "10%"],
       "index": 0,
@@ -9,6 +10,7 @@
       "var": "g:srcery_black"
     },
     "red": {
+      "css": "--srcery-palette-primary-red",
       "hex": "#EF2F27",
       "hsl": [2, "86%", "55%"],
       "index": 1,
@@ -17,6 +19,7 @@
       "var": "g:srcery_red"
     },
     "green": {
+      "css": "--srcery-palette-primary-green",
       "hex": "#519F50",
       "hsl": [119, "33%", "47%"],
       "index": 2,
@@ -25,6 +28,7 @@
       "var": "g:srcery_green"
     },
     "yellow": {
+      "css": "--srcery-palette-primary-yellow",
       "hex": "#FBB829",
       "hsl": [41, "96%", "57%"],
       "index": 3,
@@ -33,6 +37,7 @@
       "var": "g:srcery_yellow"
     },
     "blue": {
+      "css": "--srcery-palette-primary-blue",
       "hex": "#2C78BF",
       "hsl": [209, "63%", "46%"],
       "index": 4,
@@ -41,6 +46,7 @@
       "var": "g:srcery_blue"
     },
     "magenta": {
+      "css": "--srcery-palette-primary-magenta",
       "hex": "#E02C6D",
       "hsl": [338, "74%", "53%"],
       "index": 5,
@@ -49,6 +55,7 @@
       "var": "g:srcery_magenta"
     },
     "cyan": {
+      "css": "--srcery-palette-primary-cyan",
       "hex": "#0AAEB3",
       "hsl": [182, "89%", "37%"],
       "index": 6,
@@ -57,6 +64,7 @@
       "var": "g:srcery_cyan"
     },
     "white": {
+      "css": "--srcery-palette-primary-white",
       "hex": "#BAA67F",
       "hsl": [40, "30%", "61%"],
       "index": 7,
@@ -65,6 +73,7 @@
       "var": "g:srcery_white"
     },
     "bright_black": {
+      "css": "--srcery-palette-primary-bright-black",
       "hex": "#918175",
       "hsl": [26, "11%", "51%"],
       "index": 8,
@@ -73,6 +82,7 @@
       "var": "g:srcery_bright_black"
     },
     "bright_red": {
+      "css": "--srcery-palette-primary-bright-red",
       "hex": "#F75341",
       "hsl": [6, "92%", "61%"],
       "index": 9,
@@ -81,6 +91,7 @@
       "var": "g:srcery_bright_red"
     },
     "bright_green": {
+      "css": "--srcery-palette-primary-bright-green",
       "hex": "#98BC37",
       "hsl": [76, "55%", "48%"],
       "index": 10,
@@ -89,6 +100,7 @@
       "var": "g:srcery_bright_green"
     },
     "bright_yellow": {
+      "css": "--srcery-palette-primary-bright-yellow",
       "hex": "#FED06E",
       "hsl": [41, "99%", "71%"],
       "index": 11,
@@ -97,6 +109,7 @@
       "var": "g:srcery_bright_yellow"
     },
     "bright_blue": {
+      "css": "--srcery-palette-primary-bright-blue",
       "hex": "#68A8E4",
       "hsl": [209, "70%", "65%"],
       "index": 12,
@@ -105,6 +118,7 @@
       "var": "g:srcery_bright_blue"
     },
     "bright_magenta": {
+      "css": "--srcery-palette-primary-bright-magenta",
       "hex": "#FF5C8F",
       "hsl": [341, "100%", "68%"],
       "index": 13,
@@ -113,6 +127,7 @@
       "var": "g:srcery_bright_magenta"
     },
     "bright_cyan": {
+      "css": "--srcery-palette-primary-bright-cyan",
       "hex": "#2BE4D0",
       "hsl": [174, "77%", "53%"],
       "index": 14,
@@ -121,6 +136,7 @@
       "var": "g:srcery_bright_cyan"
     },
     "bright_white": {
+      "css": "--srcery-palette-primary-bright-white",
       "hex": "#FCE8C3",
       "hsl": [39, "90%", "88%"],
       "index": 15,
@@ -131,6 +147,7 @@
   },
   "secondary": {
     "orange": {
+      "css": "--srcery-palette-secondary-orange",
       "hex": "#FF5F00",
       "hsl": [22, "100%", "50%"],
       "index": 202,
@@ -139,6 +156,7 @@
       "var": "g:srcery_orange"
     },
     "bright_orange": {
+      "css": "--srcery-palette-secondary-bright-orange",
       "hex": "#FF8700",
       "hsl": [32, "100%", "50%"],
       "index": 208,
@@ -147,6 +165,7 @@
       "var": "g:srcery_bright_orange"
     },
     "hard_black": {
+      "css": "--srcery-palette-secondary-hard-black",
       "hex": "#121212",
       "hsl": [0, "0%", "7%"],
       "index": 233,
@@ -155,6 +174,7 @@
       "var": "g:srcery_hard_black"
     },
     "teal": {
+      "css": "--srcery-palette-secondary-teal",
       "hex": "#008080",
       "hsl": [180, "100%", "25%"],
       "index": 30,
@@ -163,6 +183,7 @@
       "var": null
     },
     "xgray1": {
+      "css": "--srcery-palette-secondary-xgray1",
       "hex": "#262626",
       "hsl": [0, "0%", "15%"],
       "index": 235,
@@ -171,6 +192,7 @@
       "var": "g:srcery_xgray1"
     },
     "xgray2": {
+      "css": "--srcery-palette-secondary-xgray2",
       "hex": "#303030",
       "hsl": [0, "0%", "19%"],
       "index": 236,
@@ -179,6 +201,7 @@
       "var": "g:srcery_xgray2"
     },
     "xgray3": {
+      "css": "--srcery-palette-secondary-xgray3",
       "hex": "#3A3A3A",
       "hsl": [0, "0%", "23%"],
       "index": 237,
@@ -187,6 +210,7 @@
       "var": "g:srcery_xgray3"
     },
     "xgray4": {
+      "css": "--srcery-palette-secondary-xgray4",
       "hex": "#444444",
       "hsl": [0, "0%", "27%"],
       "index": 238,
@@ -195,6 +219,7 @@
       "var": "g:srcery_xgray4"
     },
     "xgray5": {
+      "css": "--srcery-palette-secondary-xgray5",
       "hex": "#4E4E4E",
       "hsl": [0, "0%", "31%"],
       "index": 239,
@@ -203,6 +228,7 @@
       "var": "g:srcery_xgray5"
     },
     "xgray6": {
+      "css": "--srcery-palette-secondary-xgray6",
       "hex": "#585858",
       "hsl": [0, "0%", "35%"],
       "index": 240,
@@ -211,6 +237,7 @@
       "var": "g:srcery_xgray6"
     },
     "xgray7": {
+      "css": "--srcery-palette-secondary-xgray7",
       "hex": "#626262",
       "hsl": [0, "0%", "38%"],
       "index": 241,
@@ -219,6 +246,7 @@
       "var": null
     },
     "xgray8": {
+      "css": "--srcery-palette-secondary-xgray8",
       "hex": "#6C6C6C",
       "hsl": [0, "0%", "42%"],
       "index": 242,
@@ -227,6 +255,7 @@
       "var": null
     },
     "xgray9": {
+      "css": "--srcery-palette-secondary-xgray9",
       "hex": "#767676",
       "hsl": [0, "0%", "46%"],
       "index": 243,
@@ -236,6 +265,7 @@
     },
 
     "xgray10": {
+      "css": "--srcery-palette-secondary-xgray10",
       "hex": "#808080",
       "hsl": [0, "0%", "50%"],
       "index": 244,
@@ -245,6 +275,7 @@
     },
 
     "xgray11": {
+      "css": "--srcery-palette-secondary-xgray11",
       "hex": "#8A8A8A",
       "hsl": [0, "0%", "54%"],
       "index": 245,
@@ -253,6 +284,7 @@
       "var": null
     },
     "xgray12": {
+      "css": "--srcery-palette-secondary-xgray12",
       "hex": "#949494",
       "hsl": [0, "0%", "58%"],
       "index": 246,

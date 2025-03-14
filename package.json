@@ -2,8 +2,18 @@
   "name": "@srcery-colors/srcery-palette",
   "version": "1.0.4",
   "main": "./srcery.js",
+  "style": "./srcery.css",
   "description": "Srcery palette exposed as a package, used in other projects",
+  "files": [
+    "srcery.js",
+    "srcery.css",
+    "palette.json",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
+    "build": "node build.mjs",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

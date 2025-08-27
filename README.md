@@ -37,25 +37,25 @@ npm i @srcery-colors/srcery-palette
 You can clone or download and use the `palette.json` however you like:
 
 ```sh
-jq < palette.json '.primary.red.hex'
+jq < palette.json '.red.hex'
 ```
 Or you can use the [npm package](https://www.npmjs.com/package/@srcery-colors/srcery-palette), which
 exports `palette.json` as a JavaScript object:
 
 ```javascript
 const palette = require("@srcery-colors/srcery-palette");
-console.log(palette.primary.red.hex);
+console.log(palette.red.hex);
 ```
 ```mjs
 import palette from "@srcery-colors/srcery-palette";
-console.log(palette.primary.red.hex);
+console.log(palette.red.hex);
 ```
 
 The package also exports CSS variables that can be imported
 
 ```css
 @import "@srcery-colors/srcery-palette";
-background: var(--srcery-palette-primary-black);
+background: var(--srcery-palette-black);
 ```
 
 See `palette.json` for a full list of variable names, but it follows the same structure as demonstrated.

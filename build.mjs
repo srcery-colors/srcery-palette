@@ -22,15 +22,8 @@ function generateCssFile(palette, outputPath) {
   try {
     let cssContent = ":root {\n";
 
-    // Process primary colors
-    Object.keys(palette.primary).forEach(colorName => {
-      const color = palette.primary[colorName];
-      cssContent += `  ${color.css}: ${color.hex};\n`;
-    });
-
-    // Process secondary colors
-    Object.keys(palette.secondary).forEach(colorName => {
-      const color = palette.secondary[colorName];
+    Object.keys(palette).forEach(colorName => {
+      const color = palette[colorName];
       cssContent += `  ${color.css}: ${color.hex};\n`;
     });
 
@@ -47,7 +40,6 @@ function generateCssFile(palette, outputPath) {
   }
 }
 
-// Generate srcery.css file
 const cssOutputPath = path.join(__dirname, 'srcery.css');
 generateCssFile(palette, cssOutputPath);
 

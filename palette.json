@@ -1,296 +1,245 @@
 {
-  "primary": {
-    "black": {
-      "css": "--srcery-palette-primary-black",
-      "hex": "#1C1B19",
-      "hsl": [40, "6%", "10%"],
-      "index": 0,
-      "rgb": [28, 27, 25],
-      "termcol": "black",
-      "var": "g:srcery_black"
-    },
-    "red": {
-      "css": "--srcery-palette-primary-red",
-      "hex": "#EF2F27",
-      "hsl": [2, "86%", "55%"],
-      "index": 1,
-      "rgb": [239, 47, 39],
-      "termcol": "red",
-      "var": "g:srcery_red"
-    },
-    "green": {
-      "css": "--srcery-palette-primary-green",
-      "hex": "#519F50",
-      "hsl": [119, "33%", "47%"],
-      "index": 2,
-      "rgb": [81, 159, 80],
-      "termcol": "green",
-      "var": "g:srcery_green"
-    },
-    "yellow": {
-      "css": "--srcery-palette-primary-yellow",
-      "hex": "#FBB829",
-      "hsl": [41, "96%", "57%"],
-      "index": 3,
-      "rgb": [251, 184, 41],
-      "termcol": "yellow",
-      "var": "g:srcery_yellow"
-    },
-    "blue": {
-      "css": "--srcery-palette-primary-blue",
-      "hex": "#2C78BF",
-      "hsl": [209, "63%", "46%"],
-      "index": 4,
-      "rgb": [44, 120, 191],
-      "termcol": "blue",
-      "var": "g:srcery_blue"
-    },
-    "magenta": {
-      "css": "--srcery-palette-primary-magenta",
-      "hex": "#E02C6D",
-      "hsl": [338, "74%", "53%"],
-      "index": 5,
-      "rgb": [224, 44, 109],
-      "termcol": "magenta",
-      "var": "g:srcery_magenta"
-    },
-    "cyan": {
-      "css": "--srcery-palette-primary-cyan",
-      "hex": "#0AAEB3",
-      "hsl": [182, "89%", "37%"],
-      "index": 6,
-      "rgb": [10, 174, 179],
-      "termcol": "cyan",
-      "var": "g:srcery_cyan"
-    },
-    "white": {
-      "css": "--srcery-palette-primary-white",
-      "hex": "#BAA67F",
-      "hsl": [40, "30%", "61%"],
-      "index": 7,
-      "rgb": [186, 166, 127],
-      "termcol": "white",
-      "var": "g:srcery_white"
-    },
-    "bright_black": {
-      "css": "--srcery-palette-primary-bright-black",
-      "hex": "#918175",
-      "hsl": [26, "11%", "51%"],
-      "index": 8,
-      "rgb": [145, 129, 117],
-      "termcol": "brightblack",
-      "var": "g:srcery_bright_black"
-    },
-    "bright_red": {
-      "css": "--srcery-palette-primary-bright-red",
-      "hex": "#F75341",
-      "hsl": [6, "92%", "61%"],
-      "index": 9,
-      "rgb": [247, 83, 65],
-      "termcol": "brightred",
-      "var": "g:srcery_bright_red"
-    },
-    "bright_green": {
-      "css": "--srcery-palette-primary-bright-green",
-      "hex": "#98BC37",
-      "hsl": [76, "55%", "48%"],
-      "index": 10,
-      "rgb": [152, 188, 55],
-      "termcol": "brightgreen",
-      "var": "g:srcery_bright_green"
-    },
-    "bright_yellow": {
-      "css": "--srcery-palette-primary-bright-yellow",
-      "hex": "#FED06E",
-      "hsl": [41, "99%", "71%"],
-      "index": 11,
-      "rgb": [254, 208, 110],
-      "termcol": "brightyellow",
-      "var": "g:srcery_bright_yellow"
-    },
-    "bright_blue": {
-      "css": "--srcery-palette-primary-bright-blue",
-      "hex": "#68A8E4",
-      "hsl": [209, "70%", "65%"],
-      "index": 12,
-      "rgb": [104, 168, 228],
-      "termcol": "brightblue",
-      "var": "g:srcery_bright_blue"
-    },
-    "bright_magenta": {
-      "css": "--srcery-palette-primary-bright-magenta",
-      "hex": "#FF5C8F",
-      "hsl": [341, "100%", "68%"],
-      "index": 13,
-      "rgb": [255, 92, 143],
-      "termcol": "brightmagenta",
-      "var": "g:srcery_bright_magenta"
-    },
-    "bright_cyan": {
-      "css": "--srcery-palette-primary-bright-cyan",
-      "hex": "#2BE4D0",
-      "hsl": [174, "77%", "53%"],
-      "index": 14,
-      "rgb": [43, 228, 208],
-      "termcol": "brightcyan",
-      "var": "g:srcery_bright_cyan"
-    },
-    "bright_white": {
-      "css": "--srcery-palette-primary-bright-white",
-      "hex": "#FCE8C3",
-      "hsl": [39, "90%", "88%"],
-      "index": 15,
-      "rgb": [252, 232, 195],
-      "termcol": "brightwhite",
-      "var": "g:srcery_bright_white"
-    }
+  "black": {
+    "css": "--srcery-palette-black",
+    "hex": "#121110",
+    "hsl": [30, "6%", "7%"],
+    "index": 0,
+    "rgb": [18, 17, 16],
+    "termcol": "black",
+    "var": "g:srcery_black"
   },
-  "secondary": {
-    "orange": {
-      "css": "--srcery-palette-secondary-orange",
-      "hex": "#FF5F00",
-      "hsl": [22, "100%", "50%"],
-      "index": 202,
-      "rgb": [255, 95, 0],
-      "termcol": null,
-      "var": "g:srcery_orange"
-    },
-    "bright_orange": {
-      "css": "--srcery-palette-secondary-bright-orange",
-      "hex": "#FF8700",
-      "hsl": [32, "100%", "50%"],
-      "index": 208,
-      "rgb": [255, 135, 0],
-      "termcol": null,
-      "var": "g:srcery_bright_orange"
-    },
-    "hard_black": {
-      "css": "--srcery-palette-secondary-hard-black",
-      "hex": "#121212",
-      "hsl": [0, "0%", "7%"],
-      "index": 233,
-      "rgb": [18, 18, 18],
-      "termcol": null,
-      "var": "g:srcery_hard_black"
-    },
-    "teal": {
-      "css": "--srcery-palette-secondary-teal",
-      "hex": "#008080",
-      "hsl": [180, "100%", "25%"],
-      "index": 30,
-      "rgb": [0, 128, 128],
-      "termcol": null,
-      "var": null
-    },
-    "xgray1": {
-      "css": "--srcery-palette-secondary-xgray1",
-      "hex": "#262626",
-      "hsl": [0, "0%", "15%"],
-      "index": 235,
-      "rgb": [38, 38, 38],
-      "termcol": "gray15",
-      "var": "g:srcery_xgray1"
-    },
-    "xgray2": {
-      "css": "--srcery-palette-secondary-xgray2",
-      "hex": "#303030",
-      "hsl": [0, "0%", "19%"],
-      "index": 236,
-      "rgb": [48, 48, 48],
-      "termcol": "gray19",
-      "var": "g:srcery_xgray2"
-    },
-    "xgray3": {
-      "css": "--srcery-palette-secondary-xgray3",
-      "hex": "#3A3A3A",
-      "hsl": [0, "0%", "23%"],
-      "index": 237,
-      "rgb": [58, 58, 58],
-      "termcol": null,
-      "var": "g:srcery_xgray3"
-    },
-    "xgray4": {
-      "css": "--srcery-palette-secondary-xgray4",
-      "hex": "#444444",
-      "hsl": [0, "0%", "27%"],
-      "index": 238,
-      "rgb": [68, 68, 68],
-      "termcol": null,
-      "var": "g:srcery_xgray4"
-    },
-    "xgray5": {
-      "css": "--srcery-palette-secondary-xgray5",
-      "hex": "#4E4E4E",
-      "hsl": [0, "0%", "31%"],
-      "index": 239,
-      "rgb": [78, 78, 78],
-      "termcol": null,
-      "var": "g:srcery_xgray5"
-    },
-    "xgray6": {
-      "css": "--srcery-palette-secondary-xgray6",
-      "hex": "#585858",
-      "hsl": [0, "0%", "35%"],
-      "index": 240,
-      "rgb": [88, 88, 88],
-      "termcol": null,
-      "var": "g:srcery_xgray6"
-    },
-    "xgray7": {
-      "css": "--srcery-palette-secondary-xgray7",
-      "hex": "#626262",
-      "hsl": [0, "0%", "38%"],
-      "index": 241,
-      "rgb": [98, 98, 98],
-      "termcol": null,
-      "var": null
-    },
-    "xgray8": {
-      "css": "--srcery-palette-secondary-xgray8",
-      "hex": "#6C6C6C",
-      "hsl": [0, "0%", "42%"],
-      "index": 242,
-      "rgb": [108, 108, 108],
-      "termcol": null,
-      "var": null
-    },
-    "xgray9": {
-      "css": "--srcery-palette-secondary-xgray9",
-      "hex": "#767676",
-      "hsl": [0, "0%", "46%"],
-      "index": 243,
-      "rgb": [118, 118, 118],
-      "termcol": null,
-      "var": null
-    },
-
-    "xgray10": {
-      "css": "--srcery-palette-secondary-xgray10",
-      "hex": "#808080",
-      "hsl": [0, "0%", "50%"],
-      "index": 244,
-      "rgb": [128, 128, 128],
-      "termcol": null,
-      "var": null
-    },
-
-    "xgray11": {
-      "css": "--srcery-palette-secondary-xgray11",
-      "hex": "#8A8A8A",
-      "hsl": [0, "0%", "54%"],
-      "index": 245,
-      "rgb": [138, 138, 138],
-      "termcol": null,
-      "var": null
-    },
-    "xgray12": {
-      "css": "--srcery-palette-secondary-xgray12",
-      "hex": "#949494",
-      "hsl": [0, "0%", "58%"],
-      "index": 246,
-      "rgb": [148, 148, 148],
-      "termcol": null,
-      "var": null
-    }
+  "red": {
+    "css": "--srcery-palette-red",
+    "hex": "#EF2F27",
+    "hsl": [2, "86%", "55%"],
+    "index": 1,
+    "rgb": [239, 47, 39],
+    "termcol": "red",
+    "var": "g:srcery_red"
+  },
+  "green": {
+    "css": "--srcery-palette-green",
+    "hex": "#519F50",
+    "hsl": [119, "33%", "47%"],
+    "index": 2,
+    "rgb": [81, 159, 80],
+    "termcol": "green",
+    "var": "g:srcery_green"
+  },
+  "yellow": {
+    "css": "--srcery-palette-yellow",
+    "hex": "#FBB829",
+    "hsl": [41, "96%", "57%"],
+    "index": 3,
+    "rgb": [251, 184, 41],
+    "termcol": "yellow",
+    "var": "g:srcery_yellow"
+  },
+  "blue": {
+    "css": "--srcery-palette-blue",
+    "hex": "#2C78BF",
+    "hsl": [209, "63%", "46%"],
+    "index": 4,
+    "rgb": [44, 120, 191],
+    "termcol": "blue",
+    "var": "g:srcery_blue"
+  },
+  "magenta": {
+    "css": "--srcery-palette-magenta",
+    "hex": "#E02C6D",
+    "hsl": [338, "74%", "53%"],
+    "index": 5,
+    "rgb": [224, 44, 109],
+    "termcol": "magenta",
+    "var": "g:srcery_magenta"
+  },
+  "cyan": {
+    "css": "--srcery-palette-cyan",
+    "hex": "#0AAEB3",
+    "hsl": [182, "89%", "37%"],
+    "index": 6,
+    "rgb": [10, 174, 179],
+    "termcol": "cyan",
+    "var": "g:srcery_cyan"
+  },
+  "white": {
+    "css": "--srcery-palette-white",
+    "hex": "#C5B088",
+    "hsl": [39, "34%", "65%"],
+    "index": 7,
+    "rgb": [197, 176, 136],
+    "termcol": "white",
+    "var": "g:srcery_white"
+  },
+  "bright_black": {
+    "css": "--srcery-palette-bright-black",
+    "hex": "#917E6B",
+    "hsl": [30, "15%", "49%"],
+    "index": 8,
+    "rgb": [145, 126, 107],
+    "termcol": "brightblack",
+    "var": "g:srcery_bright_black"
+  },
+  "bright_red": {
+    "css": "--srcery-palette-bright-red",
+    "hex": "#F75341",
+    "hsl": [6, "92%", "61%"],
+    "index": 9,
+    "rgb": [247, 83, 65],
+    "termcol": "brightred",
+    "var": "g:srcery_bright_red"
+  },
+  "bright_green": {
+    "css": "--srcery-palette-bright-green",
+    "hex": "#98BC37",
+    "hsl": [76, "55%", "48%"],
+    "index": 10,
+    "rgb": [152, 188, 55],
+    "termcol": "brightgreen",
+    "var": "g:srcery_bright_green"
+  },
+  "bright_yellow": {
+    "css": "--srcery-palette-bright-yellow",
+    "hex": "#FED06E",
+    "hsl": [41, "99%", "71%"],
+    "index": 11,
+    "rgb": [254, 208, 110],
+    "termcol": "brightyellow",
+    "var": "g:srcery_bright_yellow"
+  },
+  "bright_blue": {
+    "css": "--srcery-palette-bright-blue",
+    "hex": "#68A8E4",
+    "hsl": [209, "70%", "65%"],
+    "index": 12,
+    "rgb": [104, 168, 228],
+    "termcol": "brightblue",
+    "var": "g:srcery_bright_blue"
+  },
+  "bright_magenta": {
+    "css": "--srcery-palette-bright-magenta",
+    "hex": "#FF5C8F",
+    "hsl": [341, "100%", "68%"],
+    "index": 13,
+    "rgb": [255, 92, 143],
+    "termcol": "brightmagenta",
+    "var": "g:srcery_bright_magenta"
+  },
+  "bright_cyan": {
+    "css": "--srcery-palette-bright-cyan",
+    "hex": "#2BE4D0",
+    "hsl": [174, "77%", "53%"],
+    "index": 14,
+    "rgb": [43, 228, 208],
+    "termcol": "brightcyan",
+    "var": "g:srcery_bright_cyan"
+  },
+  "bright_white": {
+    "css": "--srcery-palette-bright-white",
+    "hex": "#FCE8C3",
+    "hsl": [39, "90%", "88%"],
+    "index": 15,
+    "rgb": [252, 232, 195],
+    "termcol": "brightwhite",
+    "var": "g:srcery_bright_white"
+  },
+  "dark_green": {
+    "css": "--srcery-palette-dark-green",
+    "hex": "#294229",
+    "hsl": [120, "23%", "21%"],
+    "index": null,
+    "rgb": [41, 66, 41],
+    "termcol": null,
+    "var": "g:srcery_dark_red"
+  },
+  "dark_red": {
+    "css": "--srcery-palette-dark-red",
+    "hex": "#4F2321",
+    "hsl": [3, "41%", "22%"],
+    "index": null,
+    "rgb": [79, 35, 33],
+    "termcol": null,
+    "var": "g:srcery_dark_red"
+  },
+  "orange": {
+    "css": "--srcery-palette-orange",
+    "hex": "#FF5F00",
+    "hsl": [22, "100%", "50%"],
+    "index": 202,
+    "rgb": [255, 95, 0],
+    "termcol": null,
+    "var": "g:srcery_orange"
+  },
+  "bright_orange": {
+    "css": "--srcery-palette-bright-orange",
+    "hex": "#FF8700",
+    "hsl": [32, "100%", "50%"],
+    "index": 208,
+    "rgb": [255, 135, 0],
+    "termcol": null,
+    "var": "g:srcery_bright_orange"
+  },
+  "teal": {
+    "css": "--srcery-palette-teal",
+    "hex": "#008080",
+    "hsl": [180, "100%", "25%"],
+    "index": 30,
+    "rgb": [0, 128, 128],
+    "termcol": null,
+    "var": null
+  },
+  "gray1": {
+    "css": "--srcery-palette-gray1",
+    "hex": "#1C1B19",
+    "hsl": [40, "6%", "10%"],
+    "index": null,
+    "rgb": [28, 27, 25],
+    "termcol": null,
+    "var": "g:srcery_gray1"
+  },
+  "gray2": {
+    "css": "--srcery-palette-gray2",
+    "hex": "#262522",
+    "hsl": [45, "6%", "14%"],
+    "index": null,
+    "rgb": [38, 37, 34],
+    "termcol": null,
+    "var": "g:srcery_gray2"
+  },
+  "gray3": {
+    "css": "--srcery-palette-gray3",
+    "hex": "#312F2C",
+    "hsl": [36, "5%", "18%"],
+    "index": null,
+    "rgb": [49, 47, 44],
+    "termcol": null,
+    "var": "g:srcery_xgray3"
+  },
+  "gray4": {
+    "css": "--srcery-palette-gray4",
+    "hex": "#3B3935",
+    "hsl": [40, "5%", "22%"],
+    "index": null,
+    "rgb": [59, 57, 53],
+    "termcol": null,
+    "var": "g:srcery_gray4"
+  },
+  "gray5": {
+    "css": "--srcery-palette-gray5",
+    "hex": "#45433E",
+    "hsl": [43, "5%", "26%"],
+    "index": null,
+    "rgb": [69, 67, 62],
+    "termcol": null,
+    "var": "g:srcery_gray5"
+  },
+  "gray6": {
+    "css": "--srcery-palette-gray6",
+    "hex": "#504D47",
+    "hsl": [40, "6%", "30%"],
+    "index": null,
+    "rgb": [80, 77, 71],
+    "termcol": null,
+    "var": "g:srcery_gray6"
   }
 }

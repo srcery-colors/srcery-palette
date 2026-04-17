@@ -169,7 +169,7 @@
     "rgb": [30, 81, 33],
     "termcol": null,
     "var": "g:srcery_dark_blue"
-  }
+  },
   "orange": {
     "css": "--srcery-palette-orange",
     "hex": "#FF5F00",

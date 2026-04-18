@@ -150,7 +150,7 @@
     "index": 22,
     "rgb": [41, 66, 41],
     "termcol": null,
-    "var": "g:srcery_dark_red"
+    "var": "g:srcery_dark_green"
   },
   "dark_red": {
     "css": "--srcery-palette-dark-red",

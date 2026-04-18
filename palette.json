@@ -147,7 +147,7 @@
     "css": "--srcery-palette-dark-green",
     "hex": "#294229",
     "hsl": [120, "23%", "21%"],
-    "index": null,
+    "index": 22,
     "rgb": [41, 66, 41],
     "termcol": null,
     "var": "g:srcery_dark_red"
@@ -156,7 +156,7 @@
     "css": "--srcery-palette-dark-red",
     "hex": "#4F2321",
     "hsl": [3, "41%", "22%"],
-    "index": null,
+    "index": 88,
     "rgb": [79, 35, 33],
     "termcol": null,
     "var": "g:srcery_dark_red"
@@ -165,7 +165,7 @@
     "css": "--srcery-palette-dark-blue",
     "hex": "#1E5181",
     "hsl": [209, "62%", "31%"],
-    "index": null,
+    "index": 24,
     "rgb": [30, 81, 33],
     "termcol": null,
     "var": "g:srcery_dark_blue"

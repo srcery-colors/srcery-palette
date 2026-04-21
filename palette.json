@@ -166,7 +166,7 @@
     "hex": "#1E5181",
     "hsl": [209, "62%", "31%"],
     "index": 24,
-    "rgb": [30, 81, 33],
+    "rgb": [30, 81, 129],
     "termcol": null,
     "var": "g:srcery_dark_blue"
   },

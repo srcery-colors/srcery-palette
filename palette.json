@@ -204,7 +204,7 @@
     "index": 30,
     "rgb": [0, 128, 128],
     "termcol": null,
-    "var": null
+    "var": "g:srcery_teal"
   },
   "gray1": {
     "css": "--srcery-palette-gray1",
@@ -231,7 +231,7 @@
     "index": null,
     "rgb": [49, 47, 44],
     "termcol": null,
-    "var": "g:srcery_xgray3"
+    "var": "g:srcery_gray3"
   },
   "gray4": {
     "css": "--srcery-palette-gray4",

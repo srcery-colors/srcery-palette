@@ -210,7 +210,7 @@
     "css": "--srcery-palette-gray1",
     "hex": "#1C1B19",
     "hsl": [40, "6%", "10%"],
-    "index": null,
+    "index": 235,
     "rgb": [28, 27, 25],
     "termcol": null,
     "var": "g:srcery_gray1"
@@ -219,7 +219,7 @@
     "css": "--srcery-palette-gray2",
     "hex": "#262522",
     "hsl": [45, "6%", "14%"],
-    "index": null,
+    "index": 236,
     "rgb": [38, 37, 34],
     "termcol": null,
     "var": "g:srcery_gray2"
@@ -228,7 +228,7 @@
     "css": "--srcery-palette-gray3",
     "hex": "#312F2C",
     "hsl": [36, "5%", "18%"],
-    "index": null,
+    "index": 237,
     "rgb": [49, 47, 44],
     "termcol": null,
     "var": "g:srcery_gray3"
@@ -237,7 +237,7 @@
     "css": "--srcery-palette-gray4",
     "hex": "#3B3935",
     "hsl": [40, "5%", "22%"],
-    "index": null,
+    "index": 238,
     "rgb": [59, 57, 53],
     "termcol": null,
     "var": "g:srcery_gray4"
@@ -246,7 +246,7 @@
     "css": "--srcery-palette-gray5",
     "hex": "#45433E",
     "hsl": [43, "5%", "26%"],
-    "index": null,
+    "index": 239,
     "rgb": [69, 67, 62],
     "termcol": null,
     "var": "g:srcery_gray5"
@@ -255,7 +255,7 @@
     "css": "--srcery-palette-gray6",
     "hex": "#504D47",
     "hsl": [40, "6%", "30%"],
-    "index": null,
+    "index": 240,
     "rgb": [80, 77, 71],
     "termcol": null,
     "var": "g:srcery_gray6"

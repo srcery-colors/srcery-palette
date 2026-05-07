@@ -4,21 +4,60 @@
 
 <p align="center">
   <a href="https://srcery.sh">
-    <img src="https://img.shields.io/static/v1?label=&message=Website&style=flat&color=5B5B5B&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7MAAAOzAGxoQZ+AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAdJJREFUOI1jDAgIYMAFTp8+EcrIyMRqYmK2DJcaJlwS548fV2RjYJnNxsg87fzx44okGbBhwwaWvyyMSzM4dfgrlGz5/7IwLt2wYQML0QZIS0s2mLFIWIZxqDKkyJowuAirWkpLSzYQZcDZsyfthJnYK2p4TBkYGRgYGBkYGXo0PBjE2XgqT58+7oTXgHPnzgky/GNYXMFlwizEyAEXF2bjYujX9GJiYmBedPr0aWGcBvz793teOIeanBWrJIZT7YQUGFJkTaQZGf4v3LBhAyOGAWdPn8hUZxYIyODUweZVBgYGBoYqZXsGQz5Jb1lpiQycYUAqgBtgbGox/ebfDxtmfL+CU3Hb3YMM5z893/r46YsZWF3AxMSatPLHrUfHfj/H0Hzo3QOGOY/PPP3PwBgfEBDwH6sBRkZG7xmYGGI7vp35++7/D7j421/fGAqvb/v3j+FvnKmp6VusXoB7xdj80Nt/Pztavpxm+M/AwPCf4T9DyY0dDC9/fWk3NbXchzMMkMHTp88bTv15cXzVj9sMcx6fYdjz9vbxp0+fN2BTy4grN54/flyRiYX1PCMTI8PfX78MDS0t72NThzMaDS0t7//5/y/z99+/mbg0MzAwMAAAVbWgDHTwVjUAAAAASUVORK5CYII=">
+    <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fsrcery.sh&up_color=%23519f50&down_color=%23ef2f27&style=flat-square&labelColor=%23312f2c&link=https%3A%2F%2Fsrcery.sh">
   </a>
   <a href="https://discord.gg/G6vBMmZ">
-    <img src="https://img.shields.io/discord/714101903377694741?color=%232C78BF&label=Discord&logo=discord">
+    <img src="https://img.shields.io/discord/714101903377694741?style=flat-square&logo=discord&logoColor=%23fce8c3&label=Discord&labelColor=%23312f2c&color=%232c78bf&link=https%3A%2F%2Fdiscord.gg%2FG6vBMmZ">
   </a>
   <a href="https://www.npmjs.com/package/@srcery-colors/srcery-palette">
-    <img src="https://img.shields.io/npm/v/@srcery-colors/srcery-palette?color=%23FBB829&label=Palette%20version&logo=npm">
+    <img src="https://img.shields.io/npm/v/@srcery-colors/srcery-palette?color=%23FBB829&label=Latest%20Version&logo=npm&logoColor=%23fce8c3&style=flat-square&labelColor=%23312f2c">
   </a>
 </p>
 
-<h2 align="center">Srcery Palette</h2>
+<h1 align="center">Srcery Palette</h1>
 
-Srcery colors exposed as an [npm
-package](https://www.npmjs.com/package/@srcery-colors/srcery-palette), intended
-as a _single source of truth_ for the [Srcery colors](https://github.com/srcery-colors), regardless of implementation.
+This is the canonical colors for Srcery, a syntax highlighting theme for
+various editors.
+
+Created using colors that logically adheres to the 16 color base palette of a
+terminal, while trying to retain its own identity. The colors are designed to
+be easy on the eyes, yet contrast well with the background for long sessions
+using an editor or terminal emulator.
+
+Check out [🌐 srcery.sh](https://srcery.sh) and [Github](https://github.com/srcery-colors) for more.
+
+
+| IMG  | NAME | INDEX | HEX | RGB  | HSL |
+|------|------|-------|-----|------|-----|
+| ![black](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/black_24.jpg) | black  | 0 | #121110 | 18, 17, 16 | 30, 6%, 7% |
+| ![red](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/red_24.jpg) | red  | 1 | #EF2F27 | 239, 47, 39 | 2, 86%, 55% |
+| ![green](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/green_24.jpg) | green  | 2 | #519F50 | 81, 159, 80 | 119, 33%, 47% |
+| ![yellow](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/yellow_24.jpg) | yellow  | 3 | #FBB829 | 251, 184, 41 | 41, 96%, 57% |
+| ![blue](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/blue_24.jpg) | blue  | 4 | #2C78BF | 44, 120, 191 | 209, 63%, 46% |
+| ![magenta](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/magenta_24.jpg) | magenta  | 5 | #E02C6D | 224, 44, 109 | 338, 74%, 53% |
+| ![cyan](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/cyan_24.jpg) | cyan  | 6 | #0AAEB3 | 10, 174, 179 | 182, 89%, 37% |
+| ![white](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/white_24.jpg) | white  | 7 | #C5B088 | 197, 176, 136 | 39, 34%, 65% |
+| ![bright_black](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/bright_black_24.jpg) | bright_black  | 8 | #917E6B | 145, 126, 107 | 30, 15%, 49% |
+| ![bright_red](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/bright_red_24.jpg) | bright_red  | 9 | #F75341 | 247, 83, 65 | 6, 92%, 61% |
+| ![bright_green](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/bright_green_24.jpg) | bright_green  | 10 | #98BC37 | 152, 188, 55 | 76, 55%, 48% |
+| ![bright_yellow](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/bright_yellow_24.jpg) | bright_yellow  | 11 | #FED06E | 254, 208, 110 | 41, 99%, 71% |
+| ![bright_blue](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/bright_blue_24.jpg) | bright_blue  | 12 | #68A8E4 | 104, 168, 228 | 209, 70%, 65% |
+| ![bright_magenta](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/bright_magenta_24.jpg) | bright_magenta  | 13 | #FF5C8F | 255, 92, 143 | 341, 100%, 68% |
+| ![bright_cyan](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/bright_cyan_24.jpg) | bright_cyan  | 14 | #2BE4D0 | 43, 228, 208 | 174, 77%, 53% |
+| ![bright_white](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/bright_white_24.jpg) | bright_white  | 15 | #FCE8C3 | 252, 232, 195 | 39, 90%, 88% |
+| ![dark_green](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/dark_green_24.jpg) | dark_green  | 22 | #294229 | 41, 66, 41 | 120, 23%, 21% |
+| ![dark_red](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/dark_red_24.jpg) | dark_red  | 88 | #4F2321 | 79, 35, 33 | 3, 41%, 22% |
+| ![dark_blue](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/dark_blue_24.jpg) | dark_blue  | 24 | #1E5181 | 30, 81, 129 | 209, 62%, 31% |
+| ![dim_green](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/dim_green_24.jpg) | dim_green  | n/a | #2E5C2E | 46, 92, 46 | 119, 33%, 27% |
+| ![orange](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/orange_24.jpg) | orange  | 202 | #FF5F00 | 255, 95, 0 | 22, 100%, 50% |
+| ![bright_orange](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/bright_orange_24.jpg) | bright_orange  | 208 | #FF8700 | 255, 135, 0 | 32, 100%, 50% |
+| ![teal](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/teal_24.jpg) | teal  | 30 | #008080 | 0, 128, 128 | 180, 100%, 25% |
+| ![gray1](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/gray1_24.jpg) | gray1  | n/a | #1C1B19 | 28, 27, 25 | 40, 6%, 10% |
+| ![gray2](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/gray2_24.jpg) | gray2  | n/a | #262522 | 38, 37, 34 | 45, 6%, 14% |
+| ![gray3](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/gray3_24.jpg) | gray3  | n/a | #312F2C | 49, 47, 44 | 36, 5%, 18% |
+| ![gray4](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/gray4_24.jpg) | gray4  | n/a | #3B3935 | 59, 57, 53 | 40, 5%, 22% |
+| ![gray5](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/gray5_24.jpg) | gray5  | n/a | #45433E | 69, 67, 62 | 43, 5%, 26% |
+| ![gray6](https://raw.githubusercontent.com/srcery-colors/srcery-assets/next/swatch/gray6_24.jpg) | gray6  | n/a | #504D47 | 80, 77, 71 | 40, 6%, 30% |
 
 ## Installation
 

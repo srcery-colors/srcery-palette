@@ -259,5 +259,15 @@
     "rgb": [80, 77, 71],
     "termcol": null,
     "var": "g:srcery_gray6"
+  },
+  "hard_black": {
+    "css": "--srcery-palette-hard-black",
+    "hex": "#0E0D0C",
+    "hsl": [30, "5%", "5%"],
+    "index": 232,
+    "rgb": [14, 13, 12],
+    "termcol": null,
+    "var": "g:srcery_hard_black"
+
   }
 }

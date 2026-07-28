@@ -58,6 +58,8 @@ Check out [🌐 srcery.sh](https://srcery.sh) and [Github](https://github.com/sr
 | ![gray4](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray4_24.jpg) | gray4  | n/a | `#3B3935` | `rgb(59, 57, 53)` | `hsl(40, 5%, 22%)` |
 | ![gray5](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray5_24.jpg) | gray5  | n/a | `#45433E` | `rgb(69, 67, 62)` | `hsl(43, 5%, 26%)` |
 | ![gray6](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray6_24.jpg) | gray6  | n/a | `#504D47` | `rgb(80, 77, 71)` | `hsl(40, 6%, 30%)` |
+| ![hard_black](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/hard_black_24.jpg) | hard_black  | 232 | `#0E0D0C` | `rgb(14 13 12)` | `hsl(30 5% 5%)` |
+
 
 ## Installation
 

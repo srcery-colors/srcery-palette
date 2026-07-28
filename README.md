@@ -52,12 +52,12 @@ Check out [🌐 srcery.sh](https://srcery.sh) and [Github](https://github.com/sr
 | ![orange](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/orange_24.jpg) | orange  | 202 | `#FF5F00` | `rgb(255, 95, 0)` | `hsl(22, 100%, 50%)` |
 | ![bright_orange](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/bright_orange_24.jpg) | bright_orange  | 208 | `#FF8700` | `rgb(255, 135, 0)` | `hsl(32, 100%, 50%)` |
 | ![teal](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/teal_24.jpg) | teal  | 30 | `#008080` | `rgb(0, 128, 128)` | `hsl(180, 100%, 25%)` |
-| ![gray1](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray1_24.jpg) | gray1  | n/a | `#1C1B19` | `rgb(28, 27, 25)` | `hsl(40, 6%, 10%)` |
-| ![gray2](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray2_24.jpg) | gray2  | n/a | `#262522` | `rgb(38, 37, 34)` | `hsl(45, 6%, 14%)` |
-| ![gray3](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray3_24.jpg) | gray3  | n/a | `#312F2C` | `rgb(49, 47, 44)` | `hsl(36, 5%, 18%)` |
-| ![gray4](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray4_24.jpg) | gray4  | n/a | `#3B3935` | `rgb(59, 57, 53)` | `hsl(40, 5%, 22%)` |
-| ![gray5](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray5_24.jpg) | gray5  | n/a | `#45433E` | `rgb(69, 67, 62)` | `hsl(43, 5%, 26%)` |
-| ![gray6](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray6_24.jpg) | gray6  | n/a | `#504D47` | `rgb(80, 77, 71)` | `hsl(40, 6%, 30%)` |
+| ![gray1](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray1_24.jpg) | gray1  | 235 | `#1C1B19` | `rgb(28, 27, 25)` | `hsl(40, 6%, 10%)` |
+| ![gray2](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray2_24.jpg) | gray2  | 236 | `#262522` | `rgb(38, 37, 34)` | `hsl(45, 6%, 14%)` |
+| ![gray3](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray3_24.jpg) | gray3  | 237 | `#312F2C` | `rgb(49, 47, 44)` | `hsl(36, 5%, 18%)` |
+| ![gray4](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray4_24.jpg) | gray4  | 238 | `#3B3935` | `rgb(59, 57, 53)` | `hsl(40, 5%, 22%)` |
+| ![gray5](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray5_24.jpg) | gray5  | 239 | `#45433E` | `rgb(69, 67, 62)` | `hsl(43, 5%, 26%)` |
+| ![gray6](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/gray6_24.jpg) | gray6  | 240 | `#504D47` | `rgb(80, 77, 71)` | `hsl(40, 6%, 30%)` |
 | ![hard_black](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/hard_black_24.jpg) | hard_black  | 232 | `#0E0D0C` | `rgb(14 13 12)` | `hsl(30 5% 5%)` |
 
 

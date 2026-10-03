@@ -1,323 +1,155 @@
-# Srcery Light: rationale, comparisons and measured results
+# Srcery Light: revision 05, rationale and measured results
 
-Srcery Light adds an opt-in parchment palette with `#FCE8C3` as its background,
-using the canonical Srcery hue families and the existing Vim theme's semantic
-relationships. The resulting candidate meets a 4.5:1 target for every audited
-text pair and a 3:1 target for every audited non-text indicator/decorative pair
-in both the GUI palette and the fixed 256-color fallback. It remains a visual
-review candidate; passing contrast checks does not establish that every reader
-will prefer its appearance or that arbitrary plugins meet the same targets.
+Revision 05 retains `#FCE8C3`, gives regular and bright foregrounds more lightness separation, preserves the exact canonical red and green UI surfaces, and replaces the small text-only hue overview with large filled swatches. The reference remains the unchanged dark `srcery.vim`; the source of color identity remains `srcery-palette/palette.json`. All 232 explicit highlight links and all syntax palette relationships are preserved. Eight UI/error definitions differ from the dark reference.
 
-## Scope and provenance
+This revision addresses two distinct observations: Error and PmenuSel previously reused contrast-adjusted foreground colors as fills, changing their appearance; the hue-family overview also made regular/bright colors difficult to distinguish. Exact surface roles address the first observation. A wider accent lightness distribution and larger specimens address the second. Passing the contrast audit supports readability of the recorded pairs; it does not establish a subjective preference or universal visual distinguishability.
 
-The source of color definitions is `srcery-palette/palette.json`, at input commit
-`1176afc74f23dc4ff7c4f3bb116ea327b006f4bb`. The initial reference implementation
-is `srcery-vim/colors/srcery.vim`, at input commit
-`ae584b8320c6e74bd37ca908e45026163c086628`. The original palette, its existing
-package exports, and the original dark colorscheme remain unchanged.
+## Comparisons with the current dark implementation
 
-Both iteration directories record SHA-256 hashes of those input files. They
-contain the generated palette and Vim theme, measured color pairs, resolved
-highlight attributes from both editors, syntax specimens, and readable reports.
-This preserves the first attempt and its failures instead of retaining only
-the successful result. The generated Vim test palette is a snapshot, not a
-second authoritative source; the canonical generator updates it alongside
-the theme. The colorscheme itself has no JSON or Python runtime dependency.
+The following examples use identical source fixtures, fonts and Vim syntax IDs. Left is current dark; right is revision 05. These are HTML specimens from resolved editor attributes, not screenshots of a running editor. The separate popup capture is rendered from actual Neovim `ext_linegrid` events with its native completion popup enabled.
 
-The dark comparison is captured from the actual unmodified Vim implementation,
-rather than a reconstructed approximation of it. This matters because there
-are small differences between that implementation and the canonical palette:
-for example, its hard-black default is `#121212`, whereas the canonical entry
-is `#0E0D0C`. The light palette always derives its entries from the canonical
-source. The comparison does not silently correct the existing dark implementation.
+![Hue families: current dark and revision 05](comparison/palette.png)
 
-## Direct comparison examples
+![Previous light candidate and revision 05](comparison/revision.png)
 
-Every pair uses the same source fixture, font settings and Vim syntax engine.
-The left side is the current dark theme; the right side is light iteration 02.
-These images are HTML syntax specimens rendered from actual headless Vim
-syntax IDs and resolved attributes. They are not screenshots of a running
-editor, and no Tree-sitter parser was installed. Neovim's resolved dark and
-light highlight data are also retained.
+![Native Neovim completion popup and Error](comparison/native-popup.png)
 
-### Python
+![Python](comparison/python.png)
 
-![Current dark and proposed light Python](comparison/python.png)
+![Rust](comparison/rust.png)
 
-### Rust
+![TypeScript](comparison/typescript.png)
 
-![Current dark and proposed light Rust](comparison/rust.png)
+![Markdown](comparison/markdown.png)
 
-### TypeScript
+![UI, selection, search and diff contexts](comparison/ui.png)
 
-![Current dark and proposed light TypeScript](comparison/typescript.png)
+## Why the background remains unchanged
 
-### Markdown
+The background has relative luminance 0.8235, versus 1.0000 for white. It is bright, but changing it does not independently solve collapsed foreground spacing. The previous solver selected every regular accent at almost the same worst-background contrast, and every bright accent at a second closely spaced threshold. This compressed their luminance differences even where canonical source colors differed substantially.
 
-![Current dark and proposed light Markdown](comparison/markdown.png)
+Darkening the background while holding accents constant lowers the contrast of dark text. Restoring the same target would require further foreground darkening. That can work as a separate visual direction, but it is not evidence that a darker background would improve this candidate. This revision holds the requested parchment background fixed to isolate the accent and secondary-surface changes. No monitor measurements, ambient-light experiment or subjective reader study was performed, so there is no fact-based basis to claim that the background is universally too bright or comfortable.
 
-### UI, selection, search and diffs
+## Hue identity and the revised generation rule
 
-![Current dark and proposed light UI](comparison/ui.png)
+Canonical RGB is authoritative. The generator recomputes HSL from those channels rather than relying on rounded HSL metadata. For chromatic foregrounds it holds HSL hue and saturation fixed and changes lightness only, using binary search and checking the resulting eight-bit hex color. The hue constraint test verifies less than one degree of circular hue drift after quantization. HSL hue preservation is a reproducible technical constraint; it is not a claim that a darker yellow has the same perceived appearance as a bright yellow.
 
-The selection rows retain inverse highlighting. A selected keyword and a
-selected string can therefore have different backgrounds, because the syntax
-foreground becomes the selected cell's background. This is the original
-relationship, not a new selection design. Keeping it avoids a broad highlight
-redesign, though the visual result deserves review in an actual editing session.
+The new ordinary accent contrast goal is `target + 0.05 + 1.5 × canonical relative luminance`. Bright accent roles receive an additional `1.4`. Teal also receives `1.4` to retain its deeper role relative to cyan. Gray6 keeps its separate 3.05 indicator goal. The solver finds the highest HSL lightness meeting that goal on every modeled syntax background, with canonical lightness as its upper bound.
 
-### Hue families
+These coefficients are explicit design choices, not WCAG requirements or values uniquely dictated by the source. They provide modest source-dependent spacing, a stronger distinction for bright roles on a light background, and headroom above the minimum. The canonical bright roles become deeper rather than lighter on parchment. This preserves separate semantic roles and hue identity, while changing the direction of their lightness hierarchy. The original identical-threshold strategy remains reproducible through the generator's flags and historical snapshots.
 
-![Canonical dark accents and adapted light accents](comparison/palette.png)
+Secondary neutral surfaces now step down by `0.009` HSL lightness per entry rather than `0.023`. Diff tints use lightness `0.92` instead of `0.88`/`0.85`, with their canonical hues and saturations retained. This reduces the amount of foreground darkening demanded by darker overlays while retaining warm neutral and tinted background roles. The main background itself is unchanged. The surface modifications are palette changes, not language highlighting redesigns.
 
-## Why swapping only the background is insufficient
+| Accent | Canonical | Previous light 04 | Revised light 05 | Contrast on parchment |
+|---|---|---|---|---:|
+| red | #EF2F27 | #B0140D | #B7140E | 5.5995 |
+| green | #519F50 | #326332 | #346533 | 5.7179 |
+| yellow | #FBB829 | #775102 | #724F02 | 6.1627 |
+| blue | #2C78BF | #215B90 | #235F98 | 5.5253 |
+| magenta | #E02C6D | #AA194E | #B21A51 | 5.5292 |
+| cyan | #0AAEB3 | #066265 | #066366 | 5.8538 |
+| orange | #FF5F00 | #9A3900 | #9D3A00 | 5.7488 |
+| bright_red | #F75341 | #A11607 | #961406 | 7.2806 |
+| bright_green | #98BC37 | #47571A | #3F4E17 | 7.5513 |
+| bright_yellow | #FED06E | #6D4A01 | #5D3F01 | 8.0252 |
+| bright_blue | #68A8E4 | #19538A | #164B7D | 7.4763 |
+| bright_magenta | #FF5C8F | #A50033 | #980030 | 7.3472 |
+| bright_cyan | #2BE4D0 | #0C5B53 | #0A4F48 | 7.8520 |
+| bright_orange | #FF8700 | #7C4200 | #703C00 | 7.4808 |
+| teal | #008080 | #006363 | #005555 | 7.1875 |
 
-Contrast is symmetric for a given pair, but changing the background changes
-the pair. Srcery's bright colors were chosen for a nearly black background;
-placing the same RGB accents on parchment loses substantial contrast.
-The following measurements use actual resolved groups from the unchanged dark
-implementation, with the middle column substituting only the background:
+## Measured accent separation
 
-| Group / entry | Dark text on `#121110` | Unchanged dark text on `#FCE8C3` | Adjusted light text on `#FCE8C3` |
-|---|---:|---:|---:|
-| Function / yellow | 10.77 | 1.46 | 5.90 |
-| String / bright_green | 8.61 | 1.82 | 6.60 |
-| Identifier and Type / bright_blue | 7.46 | 2.10 | 6.60 |
-| Constant / bright_magenta | 6.45 | 2.43 | 6.60 |
-| PreProc / cyan | 6.93 | 2.26 | 5.94 |
-| Keyword / red | 4.59 | 3.42 | 5.92 |
-| Comment / bright_black | 4.85 | 3.23 | 5.91 |
-| Decorator / bright_orange | 7.83 | 2.00 | 6.63 |
-| Define / orange | 6.19 | 2.54 | 5.90 |
-| Special / blue | 4.08 | 3.84 | 5.89 |
+The table below measures contrast between two foreground colors, rather than their contrast against the background. It is useful evidence of increased luminance spacing. There is no 3:1 or 4.5:1 requirement for arbitrary syntax colors to contrast against each other, and these values are not a color-difference metric or proof of accessibility for color-vision deficiencies.
 
-The dark theme is a reference for identity and relationships, not a claim of
-uniform AA text contrast. For example, its blue Special text measures 4.08:1
-on the main dark background, and its current error-text pairing measures
-3.42:1. This change does not alter either dark behavior.
-
-## Color-generation decisions
-
-### Preserve accent hue and saturation before changing syntax semantics
-
-Each chromatic accent starts from canonical RGB, converts to HSL, and keeps
-its hue and saturation while varying only lightness. Canonical RGB is used
-because the stored HSL metadata is rounded. For each fixed hue/saturation,
-the generator searches for the highest quantized lightness satisfying the
-required contrast against the modeled backgrounds, bounded by the original
-accent's lightness. Forty-eight binary-search steps are used; final acceptance
-uses the rounded eight-bit RGB values actually written to the theme.
-
-This is a constrained, reproducible lightness adjustment. It is not a global
-perceptual optimization or proof that HSL hue preservation preserves perceived
-hue perfectly. RGB rounding produces less than one degree of HSL hue drift
-across the fifteen chromatic accent entries tested. A future comparison in
-OKLCH could evaluate perceptual alternatives, but replacing the color model
-now would add another design change without resolving a measured failure in
-this candidate.
-
-### Reuse the requested parchment and existing role relationships
-
-Canonical bright white, `#FCE8C3`, becomes the light background in the `black`
-role. Canonical black, `#121110`, becomes ordinary dark text in the
-`bright_white` role. Names are retained to preserve the existing mapping from
-palette entries to highlight groups. They describe inherited roles here rather
-than literal perceptual brightness. Primary text/background contrast is 15.69:1.
-
-The warm comment hue is retained through `bright_black`, now `#635649`.
-The ordinary white/text-muted role becomes `#685633`. These are deliberately
-warm browns rather than neutral grays, following the canonical palette.
-
-### Retain distinct bright accent roles on light backgrounds
-
-Ordinary accents are generated against a 4.55:1 internal target; strong/bright
-accent variants use 5.10:1. The required text threshold is still 4.5:1.
-The 0.05 margin accommodates a small numerical margin above that threshold;
-checking rounded RGB ensures it is not lost during serialization. The extra
-0.60 for bright accents is a design parameter chosen to keep those roles
-visibly separate after adapting to light surfaces, not a WCAG requirement.
-On a light background, stronger variants are darker rather than literally
-brighter. Their relative visual weight and distinctness require human review.
-
-### Adapt neutral and diff backgrounds as surfaces
-
-Gray1 through gray5 retain their canonical warm hues and use canonical white's
-saturation. Their lightness steps down from the parchment reference by 0.023
-per step. Dark green/red/blue become light tints at HSL lightness 0.88; dim green
-uses 0.85. The hard-black role becomes a slightly lighter parchment, using
-canonical bright-white hue/saturation with lightness increased by 0.025.
-
-These constants are documented design choices, not measured optima. They
-produce ordered, warm surfaces and distinct diff tints while keeping the
-existing foreground/background relationships. The foreground solver then
-checks readability against the modeled light surfaces. Surface colors alone
-have no text contrast requirement; that requirement applies when a foreground
-is paired with a surface. NonText/gray6 is generated for a 3.05:1 internal
-indicator target rather than being forced into the ordinary text target.
-
-## Contrast method and audit coverage
-
-The calculation uses the WCAG sRGB transfer function. For a normalized channel
-`c`, linearization is `c / 12.92` when `c <= 0.04045`, and
-`((c + 0.055) / 1.055) ** 2.4` otherwise. Relative luminance is
-`0.2126 R + 0.7152 G + 0.0722 B`. Contrast is
-`(L_lighter + 0.05) / (L_darker + 0.05)`.
-
-Targets are 4.5:1 for ordinary-sized text and 3:1 for non-text indicators and
-decorations. Bold text is not granted a reduced target merely because its
-highlight group enables bold. Ratios are compared before display rounding.
-Reference checks include black/white at 21:1, identical white at 1:1, green on
-black at 15.304:1, and the adjacent `#767676`/`#777777` boundary on white.
-
-The palette solver models black, gray1–gray4, dark red, dark green, dark blue,
-and dim green as relevant light backgrounds. Dark blue is a conservative
-palette-surface check even though the current Vim highlight calls do not use
-it as a default background. Group-level checks use the actual highlights
-resolved by each editor, including linked groups, inherited Normal foregrounds,
-inverse attributes, and colored decorations. The syntax foreground matrix
-covers cursor-line/code backgrounds, popup surfaces, selections, search
-highlights and diffs. Scrollbar thumbs are compared with their track, and
-whitespace markers with the adjacent surface; they are painted cells rather
-than text.
-
-The iteration-02 report contains 2,974 pair records across both editors and
-both color modes: 1,495 GUI records and 1,479 cterm records. Counts include
-repeated colors through links, contexts and editors; they are not 2,974 unique
-colors or independently different cases. The GUI count is larger because it
-also includes special decoration colors. Raw records retain each editor's
-result, while the human report collapses identical findings.
-
-## Iterations and minimal necessary exceptions
-
-Iteration 01 generates the palette and preserves every direct highlight
-relationship. It validates in both editors and passes the ordinary syntax
-foreground matrix, but reveals seven distinct GUI group failures. Those seven
-appear as eleven records when Vim and Neovim results are both counted, because
-several groups exist only in Neovim. Its unconstrained nearest-xterm fallback
-has 257 failing records, or 136 distinct group/context/color combinations.
-Repeated failures mostly come from just three shared fallback color entries.
-
-Iteration 02 keeps every RGB color from iteration 01. It applies the seven
-necessary foreground-only corrections below and constrains the xterm choice.
-There is no broad recoloring of syntax families or replacement of language links.
-
-| Group(s) | Initial unchanged light mapping | Initial GUI ratio | Minimal correction | Corrected GUI ratio |
-|---|---|---:|---|---:|
-| Error, ErrorMsg | Dark bright_white text on dark red | 2.65 | Use parchment `black` as foreground; retain red background | 5.92 |
-| PmenuBorder, FloatBorder | Light gray3 on parchment | 1.25 | Use brown `bright_black`; retain gray3 for selection surfaces | 5.91 |
-| TermCursorNC | Light gray1 on parchment | 1.11 | Use `bright_black` for the inactive cursor | 5.91 |
-| NvimPagerFG_black_BG_, bold variant | Parchment black-role text on parchment | 1.00 | Use dark `bright_white` for pager foreground | 15.69 |
-
-The error conflict cannot be solved by changing `bright_white` globally:
-ordinary text needs it dark on parchment, while error text needs it light on
-red. The foreground exception resolves that shared-role conflict without
-creating another color. The border conflict similarly cannot be solved by
-darkening gray3 globally without changing selection and diff surfaces. These
-are reasons tied to specific measured failures, rather than discretionary
-syntax redesign.
-
-There are 168 direct `s:HL` definitions in the source. Exactly seven change
-palette arguments; 161 retain the same arguments. All 232 explicit `hi! link`
-lines are retained byte-for-byte, including language, Tree-sitter, diagnostic
-and plugin links. Inverse and emphasis arguments are retained. The namespace
-and palette values change, and hard-coded rainbow defaults are derived from
-the new entries instead of retaining dark RGB literals.
-
-## Fixed 256-color fallback
-
-ANSI slots 0–15 are user-configurable, so they cannot support a portable numeric
-contrast assertion. The light theme's cterm attributes use fixed slots 16–255.
-The embedded Vim/Neovim terminal palette still exports sixteen colors in the
-original order; cterm approximation indices are separate from those ANSI slots.
-`canonical_index` retains the original palette metadata, while `index` records
-the chosen fixed fallback.
-
-Iteration 01 chooses the nearest RGB approximation. Iteration 02 chooses the
-nearest RGB approximation among entries meeting the background contrast target.
-Only three indices change: yellow 94 → 58, orange 94 → 88, and bright_orange
-94 → 58. No GUI hex value changes. The limited cube requires a visible fidelity
-tradeoff: slot 94 is `#875F00`, slot 58 is `#5F5F00`, and slot 88 is `#870000`.
-The orange fallback therefore becomes redder, and several base/bright families
-collapse to the same fallback. This is not full preservation of GUI hue identity
-in 256 colors. Prefer `termguicolors` for the reviewed RGB palette.
-
-## Final measured result
-
-| Metric | GUI colors | Fixed 256-color approximation |
+| Pair | Previous 04 | Revised 05 |
 |---|---:|---:|
-| Lowest audited text ratio | 4.5519 | 4.5554 |
-| Limiting text case | Label on gray4 | Decorator on gray3 |
-| Lowest audited indicator ratio | 3.9709 | 3.3723 |
-| Limiting indicator case | NonText on main background | NonText on main background |
-| Below-target recorded pairs | 0 | 0 |
+| red / bright_red | 1.1210 | 1.3002 |
+| green / bright_green | 1.1210 | 1.3206 |
+| yellow / bright_yellow | 1.1262 | 1.3022 |
+| blue / bright_blue | 1.1203 | 1.3531 |
+| magenta / bright_magenta | 1.1173 | 1.3288 |
+| cyan / bright_cyan | 1.1160 | 1.3414 |
+| orange / bright_orange | 1.1225 | 1.3013 |
+| cyan / teal | 1.0075 | 1.2278 |
 
-The palette-only indicator matrix additionally checks gray6 against all modeled
-surfaces; its worst GUI ratio is approximately 3.07:1. That is different from
-the group-level indicator minimum because the actual NonText definition uses
-the main background. Ordinary accent/main-background ratios are approximately
-5.89–5.94:1; bright accents are approximately 6.60–6.64:1. The higher main ratio
-is a consequence of solving against the darker relevant surfaces, not an
-extra WCAG requirement for the main background.
+The overview now uses large solid swatches as well as labeled text and hex values. This removes the small glyph area as a confounding factor during palette review. The previous/revised light image uses the same parchment background and grid, allowing the adjustment to be judged independently of the dark comparison. All primary, syntax and UI images were regenerated for the current palette.
 
-## Validation and reproducibility
+## Exact canonical Error and PmenuSel surfaces
 
-Validation passed in Vim 9.1 and Neovim 0.10.4, plus Vint. The standalone Vim
-repository test now checks loading with and without `termguicolors`, direct
-foreground palette mappings including Neovim-only definitions, language and
-diagnostic links, dark/light switching, emphasis options, a custom red override,
-float backgrounds, terminal ANSI exports and four syntax fixtures. Its expected
-palette snapshot is local, so CI does not need another repository checkout.
-The existing Vim lint workflow also runs these headless tests.
+`error_red` copies canonical `red` exactly: `#EF2F27`. Error and ErrorMsg use canonical black `#121110` as their foreground. Their truecolor contrast is 4.5861:1. A contrast-adjusted syntax red can therefore remain a readable foreground without also changing the prominent Error fill. The dedicated `g:srcery_light_error_red` override exposes that distinction explicitly.
 
-The canonical repository's three test cases check WCAG reference values and
-the 4.5 threshold, reproduce the generated candidate, check the companion Vim
-output/snapshot when that checkout is present, inspect both color modes/editors
-in the saved audit, and verify accent hue drift. Browser rendering checks the
-expected specimen counts and produces side-by-side PNGs. The palette reports
-also check the interactive background selector.
+`selection_green` copies canonical `bright_green` exactly: `#98BC37`. PmenuSel uses `#121110` text at 8.6076:1, without inverse. This is a new explicit popup choice. The existing dark default popup selection is neutral cream, so the report does not describe green as an unchanged default mapping. The native capture shows the actual popup generated by `complete()`, rather than applying PmenuSel to unrelated syntax tokens.
 
-Run from adjacent checkouts with Python 3, Vim and Neovim available:
+The green fill against the unselected menu is only 1.6757:1 and does not independently reach the 3:1 state-cue target. A dark underline provides a selection-specific cue at 8.6076:1 against the fill. Its attributes and capture are validated. Removing underline or customizing these colors requires a new audit; the fill by itself remains a documented low-contrast relationship.
+
+These surface entries are deliberate exceptions to ordinary syntax foreground adaptation. Exporting canonical red as syntax text on parchment would produce only 3.4214:1. Keeping exact UI fills and adapted text roles separate avoids a conflict between hue appearance and the stated foreground contrast target.
+
+## Highlight relationships and necessary exceptions
+
+The generated Vim implementation copies the current reference, changes palette values and namespaces, and preserves language links. There are 168 direct highlight calls: 160 retain their palette arguments and eight UI/error calls change. All 232 explicit links remain verbatim. Syntax families such as keywords, strings, functions and types keep their original entry assignments.
+
+| Groups | Adjustment | Reason |
+|---|---|---|
+| Error, ErrorMsg | Dark text on dedicated canonical red | Preserve the red fill while meeting text contrast |
+| PmenuSel | Dark text on dedicated canonical bright green, no inverse, underline | Keep exact green and provide a strong state cue |
+| PmenuBorder, FloatBorder | bright_black foreground | Original gray3 is a light surface in this variant |
+| TermCursorNC | bright_black foreground | Original gray1 is too faint for the inactive cursor |
+| NvimPagerFG_black_BG_, NvimPagerFG_black_BG__bold | bright_white foreground | The black role now represents the light background |
+
+Other inverse attributes are retained. Rainbow defaults use generated entries instead of hard-coded dark hex values. This does not constitute complete third-party plugin state isolation: global rainbow settings may keep existing user defaults. Separate airline, lightline, clap and lualine integrations are outside this initial reference.
+
+## WCAG calculations, audit coverage and current failures
+
+For each sRGB channel, the calculation uses `c / 12.92` for `c ≤ 0.04045`, otherwise `((c + 0.055) / 1.055)^2.4`. Relative luminance is `0.2126R + 0.7152G + 0.0722B`. Contrast is `(lighter + 0.05) / (darker + 0.05)`. Ratios are compared before display rounding. Reference tests cover black/white 21:1, identical colors 1:1, green on black, and colors immediately around the 4.5 threshold.
+
+There are **2,978 recorded editor/context/mode pairs**, including both Vim and Neovim, truecolor and fixed xterm modes. Every text pair reaches 4.5:1; every audited indicator, decoration or state cue reaches 3:1. There are **zero below-target audited pairs**. Repeated editor/mode/context records are not 2,978 unique color combinations.
+
+| Mode | Target | Minimum | Group / context | Pair |
+|---|---:|---:|---|---|
+| gui | 4.5 | 4.5861 | ErrorMsg / own background | #121110 on #EF2F27 |
+| gui | 3 | 3.4981 | NonText / own background | #807B72 on #FCE8C3 |
+| cterm | 4.5 | 4.6714 | Decorator / gray4 | #5F5F00 on #D7D7D7 |
+| cterm | 3 | 3.3723 | NonText / own background | #767676 on #FFD7AF |
+
+The audit resolves inherited Normal foregrounds/backgrounds and reverse attributes. It covers syntax on the main, gray1–gray4 and diff surfaces, plus Visual, selected popup, search and UI contexts. The selected popup's explicit foreground is respected rather than incorrectly inheriting syntax color. Scrollbar thumbs and whitespace markers are evaluated as painted indicators. Underlines and undercurls are checked as decorations against their relevant surfaces.
+
+Surface entries have no text contrast requirement by themselves. The exported `gray5` is not part of the modeled ordinary syntax-background guarantee. Arbitrary integrations or custom terminal programs are not covered simply because they use a palette entry. The green selection fill alone is the specifically identified below-target relationship; the recommended minimal adjustment is the included underline. No additional color changes are recommended to resolve the current audited pairs.
+
+## Fixed 256-color behavior
+
+The fallback selects slots 16–255, avoiding user-configurable ANSI slots 0–15. Text approximations are selected from candidates that meet the contrast goal across modeled fallback backgrounds, then minimized by RGB distance. GUI and fallback measurements are separate because a visually similar terminal approximation can have materially different contrast.
+
+The 256-color cube has much less hue resolution. Several distinct GUI colors may map to the same slot. The wider truecolor spacing therefore does not imply equal fallback differentiation, and exact canonical Error/PmenuSel fills apply only to truecolor. Enable `termguicolors` for the reviewed RGB identity. Embedded terminal ANSI exports retain their existing ordering, including the black/bright-white role reversal; applications that assume black is always a dark foreground may need separate treatment.
+
+## Iteration history and reproducibility
+
+1. **01:** preserve highlight mappings first. The audit exposed shared-role errors and faint indicators, plus nearest-xterm failures. The failures and minimal recommendations remain recorded.
+2. **02:** keep the RGB palette, correct seven foreground definitions, constrain xterm choices. The recorded default audit passes.
+3. **03:** introduce exact canonical red/green surface roles. Text checks pass, but the expanded selection-state check identifies four editor/mode cue failures; the supplementary findings remain recorded.
+4. **04:** add the dark popup underline. The expanded audit passes, but accent spacing remains compressed.
+5. **05:** retain those UI fixes; widen accent spacing and lighten secondary backgrounds. Regenerate the palette, contrast matrices, Vim implementation, headless captures, reports and comparison assets. The expanded audit again passes.
+
+Canonical input hashes are recorded in every iteration. `palette.json` and `colors/srcery.vim` remain unchanged. The original input commits are `1176afc74f23dc4ff7c4f3bb116ea327b006f4bb` and `ae584b8320c6e74bd37ca908e45026163c086628`. The generator snapshots the theme and test palette; neither is a second canonical source.
+
+For a subsequent iteration from adjacent checkouts:
 
 ```sh
+python3 srcery-palette/tools/generate-light.py --iteration 06 --fix-ui --fix-cterm --canonical-ui --selection-underline --separated
 python3 srcery-palette/tools/test-light.py
 python3 srcery-vim/tests/run-light.py
-python3 srcery-palette/tools/generate-light.py --iteration 03 --fix-ui --fix-cterm
-python3 srcery-palette/tools/compare-light.py --iteration 03
+python3 srcery-palette/tools/compare-light.py --iteration 06
+python3 srcery-palette/tools/render-light-report.py srcery-palette/light/iterations/06
+python3 srcery-palette/tools/render-light-comparison.py srcery-palette/light/comparison
+python3 srcery-palette/tools/capture-native-ui.py
 ```
 
-Generation records a new palette, palette contrast, generated Vim theme,
-headless editor validation, resolved-group audit, and visual HTML/Markdown
-reports. Existing iteration snapshots are not overwritten. PNG rendering is
-optional and requires Playwright and Chromium; HTML generation and contrast
-checks need neither a browser nor network access. The companion renderer scripts
-create the saved palette and comparison PNGs.
+Generation and contrast checks use standard-library Python plus Vim and Neovim. PNG rendering additionally requires Playwright/Chromium; native-grid rendering requires msgpack/Pillow. The standalone colorscheme requires none of these at runtime. Existing iteration directories are not overwritten.
 
-## Boundaries and decisions still requiring visual judgment
+## Validation and visual review
 
-The measured pass applies to the enumerated default pairs, not arbitrary
-terminal/editor rendering. Custom colors, plugin-provided backgrounds, actual
-Tree-sitter parsers and user changes need additional checks. The separate
-srcery airline, lightline, clap and lualine themes still read dark globals and
-are not light implementations in this change.
+Both headless editors load the theme, check GUI/cterm mappings, switch dark/light/dark, exercise options and color overrides, verify terminal exports and parse Python, Rust, TypeScript and Markdown fixtures. The three Python tests pass for reference WCAG calculations, deterministic palette/theme generation and the recorded audit/hue constraints. Vint passes the generated theme and Vim test scripts. Browser rendering checks specimen counts and the interactive surface selector. Native popup capture asserts the actual RGB fills, text and underline.
 
-Gray5 is exported but not used by the current direct Vim highlight calls and
-is not included in the ordinary syntax-background guarantee. For example,
-white-role text on gray5 measures 4.39:1. Any future status-line integration
-using that pair must minimally lighten that surface or darken its foreground,
-then rerun the contrast and visual review. This limitation is stated explicitly
-rather than extending the zero-failure claim to unmodeled integrations.
+The rendered palette overview, Python specimen and native popup/Error capture were visually inspected before committing this revision. Large swatches make the base/deeper roles easier to compare, and Error/PmenuSel visibly use their canonical fills. This is an implementation visual review, not an assertion of final user approval. The linked PRs remain drafts for appearance review.
 
-The `g:srcery_light_*` namespace isolates palette defaults and theme options
-from the dark theme. Some third-party rainbow settings remain global and can
-retain prior defaults. Embedded terminal colors are also active-theme state,
-not independently isolated state. Terminal programs assuming black is always
-a dark text foreground may need different role choices after the black/bright
-white reversal.
-
-Contrast cannot measure whether function yellow remains subjectively yellow
-enough, whether the warm neutral ramp feels balanced, whether bright/base
-variants feel distinct enough, or whether inverse selections are pleasant.
-Those are the main visual review questions. No further adjustment is required
-to fix a measured failure among the currently audited default pairs. If visual
-review changes any colors or mapping, repeat the full iteration cycle rather
-than relying on these recorded results.
+No universal comfort, color-vision accessibility or whole-editor WCAG conformance claim is made. Contrast evidence applies to the recorded default pairs. Custom colors, backgrounds, actual Tree-sitter parsers and third-party integrations require separate verification. The remaining judgment is whether the deeper bright roles, ochre yellows and warm parchment meet the intended Srcery Light appearance.

@@ -4,9 +4,9 @@
     "dark_fg": "#FF5C8F",
     "dark_bg": "#121110",
     "dark_contrast": 6.448368315111556,
-    "light_fg": "#A50033",
+    "light_fg": "#980030",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.598164315468215,
+    "light_contrast": 7.347150265852562,
     "unchanged_accent_on_light": 2.433286277810583
   },
   {
@@ -14,9 +14,9 @@
     "dark_fg": "#519F50",
     "dark_bg": "#121110",
     "dark_contrast": 5.770672173954575,
-    "light_fg": "#326332",
+    "light_fg": "#346533",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.8891811806060455,
+    "light_contrast": 5.717876302374252,
     "unchanged_accent_on_light": 2.7190465274129103
   },
   {
@@ -24,9 +24,9 @@
     "dark_fg": "#917E6B",
     "dark_bg": "#121110",
     "dark_contrast": 4.850627321993149,
-    "light_fg": "#635649",
+    "light_fg": "#67594C",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.9062301013478224,
+    "light_contrast": 5.617241427575639,
     "unchanged_accent_on_light": 3.234782862885887
   },
   {
@@ -34,9 +34,9 @@
     "dark_fg": "#EF2F27",
     "dark_bg": "#121110",
     "dark_contrast": 4.586072501543525,
-    "light_fg": "#B0140D",
+    "light_fg": "#B7140E",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.9181504819698025,
+    "light_contrast": 5.59953437894995,
     "unchanged_accent_on_light": 3.4213864107356575
   },
   {
@@ -44,9 +44,9 @@
     "dark_fg": "#FF5C8F",
     "dark_bg": "#121110",
     "dark_contrast": 6.448368315111556,
-    "light_fg": "#A50033",
+    "light_fg": "#980030",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.598164315468215,
+    "light_contrast": 7.347150265852562,
     "unchanged_accent_on_light": 2.433286277810583
   },
   {
@@ -54,9 +54,9 @@
     "dark_fg": "#FF8700",
     "dark_bg": "#121110",
     "dark_contrast": 7.829832790651016,
-    "light_fg": "#7C4200",
+    "light_fg": "#703C00",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.626613161512638,
+    "light_contrast": 7.48075949484645,
     "unchanged_accent_on_light": 2.003966949864441
   },
   {
@@ -64,9 +64,9 @@
     "dark_fg": "#FF5F00",
     "dark_bg": "#121110",
     "dark_contrast": 6.187353580765297,
-    "light_fg": "#9A3900",
+    "light_fg": "#9D3A00",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.903430176699066,
+    "light_contrast": 5.748821414790472,
     "unchanged_accent_on_light": 2.535934940619436
   },
   {
@@ -74,9 +74,9 @@
     "dark_fg": "#917E6B",
     "dark_bg": "#121110",
     "dark_contrast": 4.850627321993149,
-    "light_fg": "#635649",
+    "light_fg": "#67594C",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.9062301013478224,
+    "light_contrast": 5.617241427575639,
     "unchanged_accent_on_light": 3.234782862885887
   },
   {
@@ -84,9 +84,9 @@
     "dark_fg": "#EF2F27",
     "dark_bg": "#121110",
     "dark_contrast": 4.586072501543525,
-    "light_fg": "#B0140D",
+    "light_fg": "#B7140E",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.9181504819698025,
+    "light_contrast": 5.59953437894995,
     "unchanged_accent_on_light": 3.4213864107356575
   },
   {
@@ -94,9 +94,9 @@
     "dark_fg": "#FF5C8F",
     "dark_bg": "#121110",
     "dark_contrast": 6.448368315111556,
-    "light_fg": "#A50033",
+    "light_fg": "#980030",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.598164315468215,
+    "light_contrast": 7.347150265852562,
     "unchanged_accent_on_light": 2.433286277810583
   },
   {
@@ -104,9 +104,9 @@
     "dark_fg": "#FBB829",
     "dark_bg": "#121110",
     "dark_contrast": 10.769052110587431,
-    "light_fg": "#775102",
+    "light_fg": "#724F02",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.897490939113347,
+    "light_contrast": 6.162714416703876,
     "unchanged_accent_on_light": 1.4570201698628051
   },
   {
@@ -114,9 +114,9 @@
     "dark_fg": "#68A8E4",
     "dark_bg": "#121110",
     "dark_contrast": 7.463706689324782,
-    "light_fg": "#19538A",
+    "light_fg": "#164B7D",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.603244511337593,
+    "light_contrast": 7.476319891526158,
     "unchanged_accent_on_light": 2.10226992948044
   },
   {
@@ -124,9 +124,9 @@
     "dark_fg": "#F75341",
     "dark_bg": "#121110",
     "dark_contrast": 5.6301151478079845,
-    "light_fg": "#A11607",
+    "light_fg": "#961406",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.634308299029842,
+    "light_contrast": 7.28058927026551,
     "unchanged_accent_on_light": 2.786928104221543
   },
   {
@@ -134,9 +134,9 @@
     "dark_fg": "#EF2F27",
     "dark_bg": "#121110",
     "dark_contrast": 4.586072501543525,
-    "light_fg": "#B0140D",
+    "light_fg": "#B7140E",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.9181504819698025,
+    "light_contrast": 5.59953437894995,
     "unchanged_accent_on_light": 3.4213864107356575
   },
   {
@@ -144,9 +144,9 @@
     "dark_fg": "#C5B088",
     "dark_bg": "#121110",
     "dark_contrast": 8.927500338687638,
-    "light_fg": "#685633",
+    "light_fg": "#675532",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.886970340117635,
+    "light_contrast": 5.97835062537014,
     "unchanged_accent_on_light": 1.7575721691583908
   },
   {
@@ -154,9 +154,9 @@
     "dark_fg": "#68A8E4",
     "dark_bg": "#121110",
     "dark_contrast": 7.463706689324782,
-    "light_fg": "#19538A",
+    "light_fg": "#164B7D",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.603244511337593,
+    "light_contrast": 7.476319891526158,
     "unchanged_accent_on_light": 2.10226992948044
   },
   {
@@ -164,9 +164,9 @@
     "dark_fg": "#FF5C8F",
     "dark_bg": "#121110",
     "dark_contrast": 6.448368315111556,
-    "light_fg": "#A50033",
+    "light_fg": "#980030",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.598164315468215,
+    "light_contrast": 7.347150265852562,
     "unchanged_accent_on_light": 2.433286277810583
   },
   {
@@ -174,9 +174,9 @@
     "dark_fg": "#C5B088",
     "dark_bg": "#121110",
     "dark_contrast": 8.927500338687638,
-    "light_fg": "#685633",
+    "light_fg": "#675532",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.886970340117635,
+    "light_contrast": 5.97835062537014,
     "unchanged_accent_on_light": 1.7575721691583908
   },
   {
@@ -184,9 +184,9 @@
     "dark_fg": "#0AAEB3",
     "dark_bg": "#121110",
     "dark_contrast": 6.932271628538161,
-    "light_fg": "#066265",
+    "light_fg": "#066366",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.936575532901057,
+    "light_contrast": 5.853807448706825,
     "unchanged_accent_on_light": 2.2634321007900655
   },
   {
@@ -194,9 +194,9 @@
     "dark_fg": "#0AAEB3",
     "dark_bg": "#121110",
     "dark_contrast": 6.932271628538161,
-    "light_fg": "#066265",
+    "light_fg": "#066366",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.936575532901057,
+    "light_contrast": 5.853807448706825,
     "unchanged_accent_on_light": 2.2634321007900655
   },
   {
@@ -204,9 +204,9 @@
     "dark_fg": "#FBB829",
     "dark_bg": "#121110",
     "dark_contrast": 10.769052110587431,
-    "light_fg": "#775102",
+    "light_fg": "#724F02",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.897490939113347,
+    "light_contrast": 6.162714416703876,
     "unchanged_accent_on_light": 1.4570201698628051
   },
   {
@@ -214,9 +214,9 @@
     "dark_fg": "#2C78BF",
     "dark_bg": "#121110",
     "dark_contrast": 4.0830581442617575,
-    "light_fg": "#215B90",
+    "light_fg": "#235F98",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.894331091446161,
+    "light_contrast": 5.525348384383432,
     "unchanged_accent_on_light": 3.8428857932089238
   },
   {
@@ -224,9 +224,9 @@
     "dark_fg": "#FBB829",
     "dark_bg": "#121110",
     "dark_contrast": 10.769052110587431,
-    "light_fg": "#775102",
+    "light_fg": "#724F02",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.897490939113347,
+    "light_contrast": 6.162714416703876,
     "unchanged_accent_on_light": 1.4570201698628051
   },
   {
@@ -234,9 +234,9 @@
     "dark_fg": "#2BE4D0",
     "dark_bg": "#121110",
     "dark_contrast": 11.775743784303758,
-    "light_fg": "#0C5B53",
+    "light_fg": "#0A4F48",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.624928724781318,
+    "light_contrast": 7.852019744249348,
     "unchanged_accent_on_light": 1.332461577190915
   },
   {
@@ -244,9 +244,9 @@
     "dark_fg": "#EF2F27",
     "dark_bg": "#121110",
     "dark_contrast": 4.586072501543525,
-    "light_fg": "#B0140D",
+    "light_fg": "#B7140E",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.9181504819698025,
+    "light_contrast": 5.59953437894995,
     "unchanged_accent_on_light": 3.4213864107356575
   },
   {
@@ -254,9 +254,9 @@
     "dark_fg": "#68A8E4",
     "dark_bg": "#121110",
     "dark_contrast": 7.463706689324782,
-    "light_fg": "#19538A",
+    "light_fg": "#164B7D",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.603244511337593,
+    "light_contrast": 7.476319891526158,
     "unchanged_accent_on_light": 2.10226992948044
   },
   {
@@ -264,9 +264,9 @@
     "dark_fg": "#98BC37",
     "dark_bg": "#121110",
     "dark_contrast": 8.607594968980939,
-    "light_fg": "#47571A",
+    "light_fg": "#3F4E17",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.602046662565113,
+    "light_contrast": 7.551289682974058,
     "unchanged_accent_on_light": 1.8228931765462866
   },
   {
@@ -274,9 +274,9 @@
     "dark_fg": "#0AAEB3",
     "dark_bg": "#121110",
     "dark_contrast": 6.932271628538161,
-    "light_fg": "#066265",
+    "light_fg": "#066366",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.936575532901057,
+    "light_contrast": 5.853807448706825,
     "unchanged_accent_on_light": 2.2634321007900655
   },
   {
@@ -284,9 +284,9 @@
     "dark_fg": "#2C78BF",
     "dark_bg": "#121110",
     "dark_contrast": 4.0830581442617575,
-    "light_fg": "#215B90",
+    "light_fg": "#235F98",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.894331091446161,
+    "light_contrast": 5.525348384383432,
     "unchanged_accent_on_light": 3.8428857932089238
   },
   {
@@ -294,9 +294,9 @@
     "dark_fg": "#FF8700",
     "dark_bg": "#121110",
     "dark_contrast": 7.829832790651016,
-    "light_fg": "#7C4200",
+    "light_fg": "#703C00",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.626613161512638,
+    "light_contrast": 7.48075949484645,
     "unchanged_accent_on_light": 2.003966949864441
   },
   {
@@ -304,9 +304,9 @@
     "dark_fg": "#68A8E4",
     "dark_bg": "#121110",
     "dark_contrast": 7.463706689324782,
-    "light_fg": "#19538A",
+    "light_fg": "#164B7D",
     "light_bg": "#FCE8C3",
-    "light_contrast": 6.603244511337593,
+    "light_contrast": 7.476319891526158,
     "unchanged_accent_on_light": 2.10226992948044
   },
   {
@@ -314,9 +314,9 @@
     "dark_fg": "#E02C6D",
     "dark_bg": "#121110",
     "dark_contrast": 4.26678356362362,
-    "light_fg": "#AA194E",
+    "light_fg": "#B21A51",
     "light_bg": "#FCE8C3",
-    "light_contrast": 5.905390617695195,
+    "light_contrast": 5.529158516189862,
     "unchanged_accent_on_light": 3.677413185238754
   },
   {

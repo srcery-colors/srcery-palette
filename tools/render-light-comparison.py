@@ -24,6 +24,10 @@ def main():
         page.locator('.ui-pair').screenshot(path=str(output / 'ui.png'))
         page.locator('.palettepair').screenshot(path=str(output / 'palette.png'))
         page.screenshot(path=str(output / 'comparison.png'), full_page=True)
+        revision = output / 'revision.html'
+        if revision.exists():
+            page.set_content(revision.read_text(), wait_until='load')
+            page.screenshot(path=str(output / 'revision.png'), full_page=True)
         browser.close()
     print(f'Rendered six comparison specimens in {output}')
 

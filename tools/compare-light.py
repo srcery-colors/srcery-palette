@@ -56,6 +56,11 @@ def ui_specimen(data):
                  'DiffAdd', 'DiffDelete', 'DiffChange', 'DiffText'):
         overlay = groups[name]
         spans = []
+        # PmenuSel is an explicit/default completion row, not a syntax overlay.
+        if name == 'PmenuSel':
+            rows.append(f'<div class="ui-row"><b>{name}</b><code style="{attributes(overlay, groups)}">'
+                        'selected_completion_item</code></div>')
+            continue
         for group_name, text in tokens:
             group = groups[group_name]
             spans.append(f'<span style="{attributes(group, groups, overlay=overlay)}">{light.html.escape(text)}</span>')
@@ -70,7 +75,7 @@ def ui_specimen(data):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--iteration', default='02')
+    parser.add_argument('--iteration', default=json.loads((ROOT / 'light/latest.json').read_text())['iteration'])
     parser.add_argument('--vim-root', type=Path, default=ROOT.parent / 'srcery-vim')
     parser.add_argument('--output', type=Path, default=ROOT / 'light/comparison')
     args = parser.parse_args()
@@ -116,18 +121,19 @@ def main():
 <style>*{box-sizing:border-box}body{margin:0;padding:28px;background:#e9e5dd;color:#121110;font:16px/1.5 system-ui}h1{margin:0;font-size:34px}h2{margin:28px 0 12px}.labels,.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}.labels{font-size:20px;font-weight:bold;padding:10px 0}.pair{margin-bottom:16px}section{padding:18px;min-width:0}h3{margin:0 0 16px;font:17px system-ui}pre,code{font:14px/1.55 monospace}pre{white-space:pre;margin:0;overflow:auto}.ui-row{margin:8px 0;display:grid;grid-template-columns:115px 1fr;gap:10px}.ui-row b{font:13px monospace}code{padding:4px}table{border-collapse:collapse;width:100%;font:13px monospace}th,td{text-align:left;padding:8px;border-bottom:1px solid #aaa}.chips{display:flex;gap:8px}.chip{padding:8px 12px}.palettepair{display:grid;grid-template-columns:1fr 1fr;gap:16px}.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:18px}.swatch{padding:10px;min-height:54px}.swatch small{display:block;font:12px monospace}@media(max-width:1000px){.pair,.labels,.palettepair{grid-template-columns:1fr}}
 </style><h1>Srcery dark → Srcery Light</h1><p>Same source, font, syntax engine and group relationships. Left: unchanged srcery.vim. Right: light iteration ''' + args.iteration + '''. These are HTML specimens rendered from actual Vim syntax IDs, not editor screenshots.</p>
 <div class="labels"><div>Current dark · #121110</div><div>Proposed light · #FCE8C3</div></div>'''
+    content += '<p>PmenuSel below is a completion row using its resolved pair, not inherited syntax colors. The optional native-popup.png captures Neovim\'s actual built-in popup grid.</p>'
     for index in range(4):
         content += f'<div class="pair syntax-{index}">' + specimen(dark, index) + specimen(current, index) + '</div>'
     content += '<h2>Inherited foregrounds, selections, search and diff backgrounds</h2><div class="pair ui-pair">' + ui_specimen(dark) + ui_specimen(current) + '</div>'
     content += '<h2>Canonical hue families on their own backgrounds</h2><div class="palettepair">'
     accents = ('red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'orange', 'bright_orange',
                'bright_red', 'bright_green', 'bright_yellow', 'bright_blue', 'bright_magenta',
-               'bright_cyan', 'white', 'bright_black')
+               'bright_cyan', 'white', 'bright_black', 'teal')
     for source, bg in ((canonical, '#121110'), (palette, '#FCE8C3')):
         content += f'<div class="swatches" style="background:{bg}">'
         for name in accents:
             value = source[name]['hex']
-            content += f'<div class="swatch" style="color:{value}">{name}<small>{value} · {light.contrast(value, bg):.2f}:1</small></div>'
+            content += f'<div class="swatch" style="color:{value}"><div style="height:48px;background:{value};margin-bottom:8px"></div>{name}<small>{value} · {light.contrast(value, bg):.2f}:1</small></div>'
         content += '</div>'
     content += '</div><h2>Contrast: current dark, unchanged dark accent on parchment, adjusted light</h2><p>The unchanged-accent column isolates why changing only the background would leave several syntax families below the 4.5:1 text target.</p><table><tr><th>Group</th><th>Current dark FG</th><th>Dark ratio</th><th>Unchanged accent on light</th><th>Light FG</th><th>Light ratio</th></tr>'
     for row in metrics:
@@ -136,9 +142,25 @@ def main():
                          row['light_fg'], f"{row['light_contrast']:.2f}")) + '</tr>'
     content += '</table></html>'
     (output / 'comparison.html').write_text(content)
+    previous_path = ROOT / 'light/iterations/04/palette.json'
+    if previous_path.exists():
+        previous = json.loads(previous_path.read_text())
+        revision = '<!doctype html><meta charset="utf-8"><style>body{font:16px system-ui;background:#e9e5dd;padding:24px}.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid{background:#FCE8C3;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px}.chip{height:55px;margin-bottom:8px}small{display:block;font:12px monospace}</style><h1>Light revision: same #FCE8C3 background</h1><div class="pair">'
+        for source, label in ((previous, 'Previous light · 04'), (palette, 'Revised light · ' + args.iteration)):
+            revision += '<section><h2>' + label + '</h2><div class="grid">'
+            for name in accents:
+                value = source[name]['hex']
+                revision += f'<div style="color:{value}"><div class="chip" style="background:{value}"></div>{name}<small>{value}</small></div>'
+            revision += '</div></section>'
+        (output / 'revision.html').write_text(revision + '</div>')
     md = ['# Dark/light comparison', '', 'Left: current `srcery.vim`; right: light iteration ' + args.iteration + '.', '',
           'Identical source fixtures, Vim syntax IDs and font settings. Neovim dark capture is also retained. '
           'These are rendered syntax specimens, not editor screenshots or Tree-sitter parser runs.', '',
+          '![Previous and revised light palette](revision.png)', '',
+          '![Actual Neovim native popup and error UI grid](native-popup.png)', '',
+          'The native popup image is rendered from Neovim ext_linegrid events after calling complete(). '
+          'Error red is identical on both sides. The light selected popup uses exact canonical bright green; '
+          'that is a new explicit selection choice rather than the unchanged dark default.', '',
           '![Python](python.png)', '', '![Rust](rust.png)', '', '![TypeScript](typescript.png)', '',
           '![Markdown](markdown.png)', '', '![UI](ui.png)', '', '![Palette](palette.png)', '',
           '| Group | Current dark FG | Dark ratio | Unchanged accent on parchment | Light FG | Light ratio |',

@@ -21,7 +21,8 @@ ROOT = Path(__file__).resolve().parents[1]
 TEXT_BACKGROUNDS = ('black', 'gray1', 'gray2', 'gray3', 'gray4',
                     'dark_red', 'dark_green', 'dark_blue', 'dim_green')
 SURFACES = {'black', 'hard_black', 'gray1', 'gray2', 'gray3', 'gray4',
-            'gray5', 'dark_red', 'dark_green', 'dark_blue', 'dim_green'}
+            'gray5', 'dark_red', 'dark_green', 'dark_blue', 'dim_green',
+            'error_red', 'selection_green'}
 SYNTAX = ('Boolean Character Comment Conditional Constant Decorator Define Delimiter '
           'Exception Float Function Identifier Include Keyword Label Member Number '
           'Operator PreCondit PreProc Repeat Special SpecialChar SpecialComment '
@@ -85,7 +86,7 @@ def nearest_xterm(value):
     return min(XTERM, key=lambda i: sum((a - b) ** 2 for a, b in zip(rgb(value), rgb(XTERM[i]))))
 
 
-def generate_palette(canonical, target, fix_cterm=False):
+def generate_palette(canonical, target, fix_cterm=False, canonical_ui=False, separated=False):
     background = canonical['bright_white']['hex']
     hue, light, saturation = hls(background)
     colors = {'black': background, 'bright_white': canonical['black']['hex'],
@@ -94,11 +95,11 @@ def generate_palette(canonical, target, fix_cterm=False):
     for i in range(1, 6):
         hue = hls(canonical[f'gray{i}']['hex'])[0]
         colors[f'gray{i}'] = hex_color(colorsys.hls_to_rgb(
-            hue, light - i * .023, hls(canonical['white']['hex'])[2]))
+            hue, light - i * (.009 if separated else .023), hls(canonical['white']['hex'])[2]))
     for name, lightness in (('dark_red', .88), ('dark_green', .88),
                             ('dark_blue', .88), ('dim_green', .85)):
         hue, _, saturation = hls(canonical[name]['hex'])
-        colors[name] = hex_color(colorsys.hls_to_rgb(hue, lightness, saturation))
+        colors[name] = hex_color(colorsys.hls_to_rgb(hue, max(lightness, .92) if separated else lightness, saturation))
     backgrounds = [colors[n] for n in TEXT_BACKGROUNDS]
     for name, entry in canonical.items():
         if name in colors:
@@ -106,6 +107,14 @@ def generate_palette(canonical, target, fix_cterm=False):
         # Strong variants are darker on light surfaces, retaining separate terminal roles.
         goal = 3.05 if name == 'gray6' else target + (.60 if name.startswith('bright_')
                                                      and name != 'bright_black' else .05)
+        if separated and name != 'gray6':
+            # Preserve source-dependent spacing instead of flattening every accent
+            # to one luminance. Bright roles become deeper on a light surface.
+            goal = target + .05 + 1.5 * luminance(entry['hex'])
+            if name.startswith('bright_') and name != 'bright_black':
+                goal += 1.4
+            if name == 'teal':
+                goal += 1.4  # Canonical teal is the deeper member of the cyan family.
         colors[name] = darkest_needed(entry['hex'], backgrounds, goal,
                                       upper=.9 if name == 'gray6' else None)
     result = {}
@@ -128,10 +137,20 @@ def generate_palette(canonical, target, fix_cterm=False):
                           if min(contrast(value, bg) for bg in backgrounds) >= goal]
             entry['index'] = min(candidates, key=lambda i: sum(
                 (a - b) ** 2 for a, b in zip(rgb(entry['hex']), rgb(XTERM[i]))))
+    if canonical_ui:
+        for name, source in (('error_red', 'red'), ('selection_green', 'bright_green')):
+            original = canonical[source]
+            value = original['hex']
+            hue, lightness, saturation = hls(value)
+            result[name] = {**original, 'hex': value, 'rgb': original['rgb'],
+                            'hsl': [round(hue * 360, 2), f'{saturation * 100:.2f}%', f'{lightness * 100:.2f}%'],
+                            'index': nearest_xterm(value), 'canonical_index': original['index'],
+                            'css': '--srcery-light-' + name.replace('_', '-'),
+                            'var': 'g:srcery_light_' + name, 'source_entry': source}
     return result
 
 
-def generate_vim(source, palette, fix_ui=False):
+def generate_vim(source, palette, fix_ui=False, canonical_ui=False, selection_underline=False):
     # Copy the implementation so existing syntax/UI relationships survive unchanged.
     result = source.replace("'srcery.vim' -- Dark Ritual", "'srcery-light.vim' -- Light Ritual")
     result = result.replace('set background=dark', 'set background=light')
@@ -160,6 +179,23 @@ def generate_vim(source, palette, fix_ui=False):
         for group, color in UI_FIXES.items():
             result = re.sub(rf"(call s:HL\('{re.escape(group)}',\s*)s:\w+",
                             lambda m: m[1] + 's:' + color, result)
+    if canonical_ui:
+        definitions = ['" Canonical colors for UI surfaces; syntax foregrounds stay separate.']
+        for name in ('error_red', 'selection_green'):
+            entry = palette[name]
+            definitions += [f"if !exists('g:srcery_light_{name}')",
+                            f"  let g:srcery_light_{name}='{entry['hex']}'", 'endif',
+                            f"if !exists('g:srcery_light_{name}_cterm')",
+                            f"  let g:srcery_light_{name}_cterm={entry['index']}", 'endif',
+                            f"let s:{name} = [g:srcery_light_{name}, g:srcery_light_{name}_cterm]"]
+        result = result.replace('" UI groups: {{{', '\n'.join(definitions) + '\n\n" UI groups: {{{')
+        for group in ('Error', 'ErrorMsg'):
+            result = re.sub(rf"(call s:HL\('{group}',\s*)s:\w+,\s*s:\w+",
+                            lambda m: m[1] + 's:bright_white, s:error_red', result)
+        result = re.sub(r"call s:HL\('PmenuSel',.*", "call s:HL('PmenuSel', s:bright_white, s:selection_green)", result)
+        if selection_underline:
+            result = result.replace("call s:HL('PmenuSel', s:bright_white, s:selection_green)",
+                                    "call s:HL('PmenuSel', s:bright_white, s:selection_green, s:underline)")
     return result
 
 
@@ -167,7 +203,7 @@ def dump_json(path, value):
     path.write_text(json.dumps(value, indent=2) + '\n')
 
 
-def editor_validation(vim_root, output, names, fix_ui=False):
+def editor_validation(vim_root, output, names, fix_ui=False, canonical_ui=False, selection_underline=False):
     names_file = output / 'groups.json'
     dump_json(names_file, sorted(names))
     results = {}
@@ -179,7 +215,11 @@ def editor_validation(vim_root, output, names, fix_ui=False):
         env = {**os.environ, 'SRCERY_LIGHT_ROOT': str(vim_root),
                'SRCERY_LIGHT_GROUPS': str(names_file), 'SRCERY_LIGHT_DUMP': str(destination),
                'SRCERY_LIGHT_PALETTE': str(output / 'palette.json')}
-        env['SRCERY_LIGHT_UI_FIXES'] = json.dumps(UI_FIXES if fix_ui else {})
+        exceptions = dict(UI_FIXES) if fix_ui else {}
+        if canonical_ui:
+            exceptions.update(Error='bright_white', ErrorMsg='bright_white', PmenuSel='bright_white')
+        env['SRCERY_LIGHT_UI_FIXES'] = json.dumps(exceptions)
+        env['SRCERY_LIGHT_SELECTION_UNDERLINE'] = '1' if selection_underline else '0'
         # Workspace VIMRUNTIME belongs to Vim; Neovim needs its own runtime.
         if editor == 'nvim':
             env.pop('VIMRUNTIME', None)
@@ -243,6 +283,16 @@ def audit(palette, editor_data, target):
                                   'fg': group['guisp'].upper(), 'bg': bg,
                                   'ratio': contrast(group['guisp'], bg), 'target': 3.})
             # Syntax still applies on cursor lines, color columns, diffs, and code blocks.
+            selection = groups['PmenuSel']
+            selected_fg, selected_bg = effective(selection, groups, mode == 'cterm')
+            _, menu_bg = effective(groups['Pmenu'], groups, mode == 'cterm')
+            underline = bool(selection[mode + 'underline'])
+            pairs.append({'editor': editor, 'mode': mode, 'group': 'PmenuSel',
+                          'context': 'selection underline' if underline else 'selection fill vs menu',
+                          'fg': selected_fg if underline else selected_bg,
+                          'bg': selected_bg if underline else menu_bg,
+                          'ratio': contrast(selected_fg, selected_bg) if underline else contrast(selected_bg, menu_bg),
+                          'target': 3.})
             for name in SYNTAX:
                 for surface in TEXT_BACKGROUNDS[1:]:
                     bg = colors[surface] if mode == 'gui' else str(palette[surface]['index'])
@@ -253,7 +303,7 @@ def audit(palette, editor_data, target):
             # Inverse overlays exchange the inherited syntax foreground and overlay background.
             for overlay in ('Visual', 'PmenuSel', 'CurSearch', 'IncSearch'):
                 for name in SYNTAX:
-                    group = {**groups[overlay], mode + 'fg': groups[name][mode + 'fg']}
+                    group = {**groups[overlay], mode + 'fg': groups[overlay][mode + 'fg'] or groups[name][mode + 'fg']}
                     fg, bg = effective(group, groups, mode == 'cterm')
                     pairs.append({'editor': editor, 'mode': mode, 'group': name,
                                   'context': overlay, 'fg': fg, 'bg': bg,
@@ -264,6 +314,8 @@ def audit(palette, editor_data, target):
 
 def recommendation(pair, palette):
     name = pair['group']
+    if name == 'PmenuSel' and pair['context'] == 'selection fill vs menu':
+        return 'Retain canonical green and add a dark underline as the high-contrast selection cue.'
     if name in ('Error', 'ErrorMsg'):
         return f"Use black ({palette['black']['hex']}) as this group's foreground; keep its red background."
     if name in ('PmenuBorder', 'FloatBorder', 'TermCursorNC'):
@@ -283,6 +335,10 @@ def reports(output, canonical, palette, data, audit_result, metadata):
     mapping_note = ('Syntax mappings and inverse attributes are preserved.' if not metadata['ui_fixes'] else
                     'Syntax families, links and inverse attributes are preserved, with necessary '
                     'foreground corrections for shared error/UI roles recorded below.')
+    if metadata.get('canonical_ui'):
+        mapping_note = ('Syntax families and links are preserved. Dedicated canonical UI surfaces '
+                        'separate Error/PmenuSel backgrounds from contrast-adjusted syntax foregrounds. '
+                        'PmenuSel uses an explicit pair; other inverse attributes are retained.')
     md = ['# Srcery Light — iteration ' + metadata['iteration'], '',
           'Review-only candidate. No commits. ' + mapping_note, '',
           f"Background: `#FCE8C3`. Text target: {audit_result['targets']['text']}:1 (WCAG AA); indicators/decorations: 3:1.", '',
@@ -299,19 +355,20 @@ def reports(output, canonical, palette, data, audit_result, metadata):
     cards = []
     for row in audit_result['palette']:
         name = row['name']
+        source_name = palette[name].get('source_entry', name)
         minimum = min(row['contrasts'].values())
         goal = row['target']
         verdict = 'SURFACE' if goal is None else 'PASS' if minimum >= goal else 'BELOW TARGET'
-        md.append(f"| {name} | {canonical[name]['hex']} | {row['hex']} | {row['role']} | "
+        md.append(f"| {name} | {canonical[source_name]['hex']} | {row['hex']} | {row['role']} | "
                   f"{row['contrasts']['black']:.2f} | {minimum:.2f} |")
-        h0, _, s0 = hls(canonical[name]['hex'])
+        h0, _, s0 = hls(canonical[source_name]['hex'])
         h1, _, s1 = hls(row['hex'])
         delta = abs((h1 - h0) * 360 + 180) % 360 - 180
         sample_style = (f"color:{palette['bright_white']['hex']};background:{row['hex']}"
                         if row['role'] == 'surface' else f"color:{row['hex']}")
-        cards.append(f'<article><div class="swatches"><i style="background:{canonical[name]["hex"]}"></i>'
+        cards.append(f'<article><div class="swatches"><i style="background:{canonical[source_name]["hex"]}"></i>'
                      f'<i style="background:{row["hex"]}"></i></div><b>{name}</b>'
-                     f'<code>{canonical[name]["hex"]} → {row["hex"]}</code>'
+                     f'<code>{canonical[source_name]["hex"]} → {row["hex"]}</code>'
                      f'<p style="{sample_style}">Aa function(42) # comment</p>'
                      f'<small>{row["role"]} · main {row["contrasts"]["black"]:.2f}:1 · worst {minimum:.2f}:1</small>'
                      f'<small>Hue drift {abs(delta):.2f}° · saturation {s0 * 100:.1f}% → {s1 * 100:.1f}% · {verdict}</small></article>')
@@ -323,6 +380,14 @@ def reports(output, canonical, palette, data, audit_result, metadata):
            '## Below-target pairs and minimal recommendations', '',
            '| Mode | Group / context | Foreground | Background | Ratio / target | Recommendation |',
            '|---|---|---|---|---|---|']
+    if metadata.get('canonical_ui'):
+        old = ('Seven foreground-only corrections for conflicting roles. No syntax color families '
+               'or links changed. Error/ErrorMsg use light text on red; borders and the inactive cursor '
+               'use bright_black; black pager text uses bright_white.')
+        md = [line.replace(old, 'Eight UI/error definitions differ from the dark reference. '
+                           'Error/ErrorMsg use canonical red surfaces and dark text; PmenuSel uses '
+                           'canonical bright green and dark text without inverse; border/cursor/pager '
+                           'fixes are retained. Syntax color families and links are unchanged.') for line in md]
     fail_rows = []
     for p in sorted(unique.values(), key=lambda p: (p['mode'], p['ratio'], p['group'], p['context'])):
         rec = recommendation(p, palette)
@@ -343,6 +408,13 @@ def reports(output, canonical, palette, data, audit_result, metadata):
            'pairwise contrast audit, not a claim of complete WCAG conformance.', '',
            'Visual review is pending. See metadata.json for the exact corrections applied in this iteration.', '']
     (output / 'report.md').write_text('\n'.join(md))
+    if metadata.get('canonical_ui'):
+        note = ('\n## Canonical UI colors\n\nError/ErrorMsg use exact canonical red `#EF2F27` '
+                'with dark text. PmenuSel uses exact canonical bright green `#98BC37` with dark text '
+                'and no inverse attribute. This is an explicit new popup selection design, not '
+                'the unchanged dark theme\'s default popup. Syntax foregrounds retain their existing families.\n')
+        path = output / 'report.md'
+        path.write_text(path.read_text() + note)
     groups = data['vim']['groups']
     syntax = []
     for sample in data['vim']['samples']:
@@ -363,7 +435,8 @@ def reports(output, canonical, palette, data, audit_result, metadata):
                  'ErrorMsg', 'Visual', 'Pmenu', 'PmenuSel', 'CurSearch', 'DiffAdd', 'DiffDelete',
                  'DiffChange', 'DiffText', 'StatusLine', 'PmenuBorder'):
         fg, bg = effective(groups[name], groups)
-        ui.append(f'<div class="ui" style="color:{fg};background:{bg}">{name} · Aa 0123 · {contrast(fg, bg):.2f}:1</div>')
+        emphasis = ';text-decoration:underline' if groups[name]['guiunderline'] else ''
+        ui.append(f'<div class="ui" style="color:{fg};background:{bg}{emphasis}">{name} · Aa 0123 · {contrast(fg, bg):.2f}:1</div>')
     content = '''<!doctype html><html lang="en"><meta charset="utf-8"><title>Srcery Light palette review</title>
 <style>*{box-sizing:border-box}body{margin:0;padding:36px;background:#FCE8C3;color:#121110;font:16px/1.5 system-ui}h1{font-size:40px;margin:0}h2{margin-top:32px}p{max-width:1000px}code,pre{font-family:monospace}code,small{display:block}small{font-size:12px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}article{border:1px solid #917E6B;padding:14px;min-width:0}.swatches{display:flex;height:44px;margin-bottom:8px}.swatches i{width:50%}article p{margin:12px 0;font:18px monospace}.samples{display:grid;grid-template-columns:1fr 1fr;gap:18px}.sample{border:1px solid #917E6B;padding:16px;overflow:auto}pre{font-size:14px;line-height:1.55}.ui-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ui{padding:12px;font:14px monospace}table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;padding:8px;border-bottom:1px solid #917E6B}button,select{font:inherit;padding:6px;margin-right:10px}.failures{overflow:auto}@media(max-width:850px){.grid,.samples{grid-template-columns:1fr 1fr}.ui-grid{grid-template-columns:1fr}}
 </style><h1>Srcery Light</h1>'''
@@ -374,7 +447,11 @@ def reports(output, canonical, palette, data, audit_result, metadata):
     content += '<h2>Canonical → light</h2><div class="grid">' + ''.join(cards) + '</div>'
     content += '<h2>Actual Vim syntax</h2><p>Rendered from headless Vim syntax IDs. Hover a token to see its resolved group. Neovim syntax and mappings are validated separately.</p><div class="samples">' + ''.join(syntax) + '</div>'
     content += '<h2>UI and overlay samples</h2><div class="ui-grid">' + ''.join(ui) + '</div>'
+    if metadata.get('canonical_ui'):
+        content += '<p>Canonical UI roles: Error/ErrorMsg background #EF2F27; PmenuSel background #98BC37. Dark text makes both readable. Popup selection uses an explicit pair rather than inverse syntax colors.</p>'
     note = 'Seven necessary foreground corrections resolve shared UI/error roles. Syntax families and links are preserved.' if metadata['ui_fixes'] else 'The pure mapping-preserving candidate exposes shared-role conflicts; minimal adjustments are listed below.'
+    if metadata.get('canonical_ui'):
+        note = 'Canonical red/green UI backgrounds are kept exact. Eight UI/error definitions are adjusted; syntax families and all links are preserved.'
     content += '<h2>Below-target pairs</h2><p>' + note + ' GUI and fixed xterm results are audited separately. Enable termguicolors to see the exact reviewed hues.</p><div class="failures"><table><thead><tr><th>Mode</th><th>Group / context</th><th>FG</th><th>BG</th><th>Ratio / target</th><th>Minimal adjustment</th></tr></thead><tbody>' + ''.join(fail_rows) + '</tbody></table></div>'
     content += '<script>document.querySelector("#surface").onchange=e=>{document.querySelectorAll("article").forEach(a=>a.style.background=e.target.value)}</script></html>'
     (output / 'report.html').write_text(content)
@@ -387,6 +464,9 @@ def main():
     parser.add_argument('--target', type=float, default=4.5)
     parser.add_argument('--fix-ui', action='store_true', help='Apply audited minimal shared-role foreground corrections')
     parser.add_argument('--fix-cterm', action='store_true', help='Constrain xterm approximations to the contrast target')
+    parser.add_argument('--canonical-ui', action='store_true', help='Keep canonical red/green in dedicated error/popup surface roles')
+    parser.add_argument('--selection-underline', action='store_true', help='Add a high-contrast state cue while retaining canonical popup green')
+    parser.add_argument('--separated', action='store_true', help='Retain source-dependent accent spacing and lighten secondary surfaces')
     args = parser.parse_args()
     if not re.fullmatch(r'[a-zA-Z0-9_-]+', args.iteration):
         parser.error('iteration must be a simple directory name')
@@ -398,10 +478,10 @@ def main():
     source_path = args.vim_root / 'colors/srcery.vim'
     canonical = json.loads(canonical_path.read_text())
     source = source_path.read_text()
-    palette = generate_palette(canonical, args.target, args.fix_cterm)
+    palette = generate_palette(canonical, args.target, args.fix_cterm, args.canonical_ui, args.separated)
     dump_json(ROOT / 'palette-light.json', palette)
     dump_json(output / 'palette.json', palette)
-    theme = generate_vim(source, palette, args.fix_ui)
+    theme = generate_vim(source, palette, args.fix_ui, args.canonical_ui, args.selection_underline)
     (args.vim_root / 'colors/srcery-light.vim').write_text(theme)
     dump_json(args.vim_root / 'tests/light-palette.json', palette)
     (output / 'srcery-light.vim').write_text(theme)
@@ -411,17 +491,23 @@ def main():
                 'canonical_sha256': hashlib.sha256(canonical_path.read_bytes()).hexdigest(),
                 'vim_source_sha256': hashlib.sha256(source_path.read_bytes()).hexdigest(),
                 'visual_review': 'pending', 'syntax_remapping': False,
-                'ui_fixes': UI_FIXES if args.fix_ui else {}, 'cterm_constrained': args.fix_cterm}
+                'ui_fixes': UI_FIXES if args.fix_ui else {}, 'cterm_constrained': args.fix_cterm,
+                'canonical_ui': args.canonical_ui, 'selection_underline': args.selection_underline,
+                'separated': args.separated}
+    if args.canonical_ui:
+        metadata['ui_fixes'] = {**metadata['ui_fixes'], 'Error': 'bright_white',
+                                'ErrorMsg': 'bright_white', 'PmenuSel': 'bright_white'}
     dump_json(output / 'metadata.json', metadata)
     # Measure the palette before editor execution, then audit the resolved editor groups.
     dump_json(output / 'palette-contrast.json', audit(palette, {}, args.target)['palette'])
     names = set(re.findall(r"call s:HL\('([^']+)'", source))
     for pair in re.findall(r'^\s*hi! link (\S+) (\S+)', source, re.M):
         names.update(pair)
-    data = editor_validation(args.vim_root, output, names, args.fix_ui)
+    data = editor_validation(args.vim_root, output, names, args.fix_ui, args.canonical_ui, args.selection_underline)
     result = audit(palette, data, args.target)
     dump_json(output / 'contrast.json', result)
     reports(output, canonical, palette, data, result, metadata)
+    dump_json(ROOT / 'light/latest.json', metadata)
     print(f'Generated {output / "report.html"}')
     print(f'GUI below-target pairs: {sum(p["mode"] == "gui" for p in result["failures"])}')
     print(f'xterm below-target pairs: {sum(p["mode"] == "cterm" for p in result["failures"])}')

@@ -1,0 +1,21 @@
+{
+  "iteration": "03",
+  "background": "#FCE8C3",
+  "target": 4.5,
+  "canonical_sha256": "ba90a4c65e4dc1c8db40751b4b4fa062d4d00d9b8a0a890266fbb4696cb045be",
+  "vim_source_sha256": "7b77680ab25396a8fc4b50945556161dc658fde6f66b6e576c6999b106433463",
+  "visual_review": "pending",
+  "syntax_remapping": false,
+  "ui_fixes": {
+    "Error": "bright_white",
+    "ErrorMsg": "bright_white",
+    "PmenuBorder": "bright_black",
+    "FloatBorder": "bright_black",
+    "TermCursorNC": "bright_black",
+    "NvimPagerFG_black_BG_": "bright_white",
+    "NvimPagerFG_black_BG__bold": "bright_white",
+    "PmenuSel": "bright_white"
+  },
+  "cterm_constrained": true,
+  "canonical_ui": true
+}

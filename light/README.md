@@ -17,9 +17,19 @@ These additions do not change the package's existing dark exports.
 - [Iteration 02](iterations/02/report.html): retain all RGB colors, apply seven
   necessary foreground corrections, and select xterm approximations meeting
   the target. No audited GUI or fixed 256-color pair is below its target.
-- [Current palette image](iterations/02/palette.png),
-  [syntax specimens](iterations/02/syntax.png), and
-  [UI specimens](iterations/02/ui.png).
+- [Current palette image](iterations/05/palette.png),
+  [syntax specimens](iterations/05/syntax.png), and
+  [UI specimens](iterations/05/ui.png).
+- [Iteration 03](iterations/03/report.html): retain the thirty RGB entries and add
+  exact canonical error-red and popup-green surface roles, with explicit dark text.
+  Its original text audit passes, but a subsequent selection-state check finds
+  the green fill only 1.59:1 against the menu.
+- [Iteration 04](iterations/04/report.html): retain all RGB values and add a dark
+  selection underline. The expanded state-cue audit passes, along with text and
+  indicator checks. [Native popup/error capture](comparison/native-popup.png).
+- [Iteration 05](iterations/05/report.html): retain the main background and exact UI
+  fills, widen accent lightness spacing, lighten secondary surfaces, and expand
+  the overview to large solid swatches. All audited pairs pass.
 - [Detailed analysis](ANALYSIS.md) and [current dark/light comparisons](comparison/comparison.md).
 - Each iteration also contains `report.md`, `contrast.json`,
   `palette-contrast.json`, input hashes in `metadata.json`, a palette/theme
@@ -52,7 +62,7 @@ main, cursor-line, code-block, popup, selection, search, and diff backgrounds,
 including inherited foregrounds and reverse attributes. Scrollbar thumbs and
 whitespace markers are evaluated as painted indicators, rather than text.
 
-Iteration 02 changes only these foreground relationships:
+Iteration 02 records the initial foreground-only corrections:
 
 | Groups | Original entry | Light entry | Reason |
 |---|---|---|---|
@@ -61,8 +71,10 @@ Iteration 02 changes only these foreground relationships:
 | TermCursorNC | gray1 | bright_black | Visible inactive cursor |
 | NvimPagerFG_black_BG_, NvimPagerFG_black_BG__bold | black | bright_white | Dark pager text on parchment |
 
-All language links, syntax families, and inverse attributes are copied from
-the reference. Rainbow plugin defaults use generated entries instead of
+Iteration 03 keeps all language links and syntax families. It uses canonical
+red and bright green for dedicated Error/PmenuSel backgrounds, with dark text;
+PmenuSel removes inverse; iteration 04 adds a high-contrast underline. Other inverse attributes remain as in the reference.
+The green popup is an explicit new choice, not the unchanged dark default. Rainbow plugin defaults use generated entries instead of
 hard-coded dark colors. Custom plugin colors and separate airline, lightline,
 clap, and lualine integrations are outside this initial reference.
 
@@ -92,21 +104,22 @@ In this workspace, activate the existing toolchain first:
 
 ```sh
 source /workspace/.srcery-setup/env.sh
-python3 /workspace/srcery-palette/tools/generate-light.py --iteration 03 --fix-ui --fix-cterm
+python3 /workspace/srcery-palette/tools/generate-light.py --iteration 06 --fix-ui --fix-cterm --canonical-ui --selection-underline --separated
 vint --stat /workspace/srcery-vim/colors/srcery-light.vim /workspace/srcery-vim/tests/light.vim
-python3 /workspace/srcery-palette/tools/render-light-report.py /workspace/srcery-palette/light/iterations/03
-python3 /workspace/srcery-palette/tools/compare-light.py --iteration 03
+python3 /workspace/srcery-palette/tools/render-light-report.py /workspace/srcery-palette/light/iterations/06
+python3 /workspace/srcery-palette/tools/compare-light.py --iteration 06
 python3 /workspace/srcery-palette/tools/render-light-comparison.py /workspace/srcery-palette/light/comparison
 ```
 
 The generator requires Python 3, Vim and Neovim. It first generates the palette
 and measures palette contrast, writes the Vim theme, runs both headless editor
 validations, audits their resolved groups, then produces the visual HTML and
-Markdown reports. Omit both fix flags to reproduce the initial attempt.
+Markdown reports. Omit the fix flags and canonical-ui flag to reproduce the initial attempt.
 Use a new iteration name every time; existing snapshots are never overwritten.
 
-The optional PNG renderer requires Playwright and Chromium (available in this
-workspace). Local Chromium needs sandbox socket permission here, even though
+The optional PNG renderers require Playwright and Chromium. Native UI capture
+requires msgpack and Pillow. Use a Python environment containing these optional
+packages; the workspace editor toolchain Python does not include all of them. Local Chromium needs sandbox socket permission here, even though
 the report contains no remote assets. The HTML and all contrast checks are
 generated without a browser or network access.
 

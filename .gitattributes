@@ -1,0 +1,6 @@
+light/iterations/** linguist-generated=true
+light/comparison/*.json linguist-generated=true
+light/comparison/*.html linguist-generated=true
+light/comparison/*.log linguist-generated=true
+light/comparison/*.png linguist-generated=true
+srcery-light.css linguist-generated=true

@@ -1,0 +1,32 @@
+:root {
+  --srcery-light-black: #FCE8C3;
+  --srcery-light-red: #B0140D;
+  --srcery-light-green: #326332;
+  --srcery-light-yellow: #775102;
+  --srcery-light-blue: #215B90;
+  --srcery-light-magenta: #AA194E;
+  --srcery-light-cyan: #066265;
+  --srcery-light-white: #685633;
+  --srcery-light-bright-black: #635649;
+  --srcery-light-bright-red: #A11607;
+  --srcery-light-bright-green: #47571A;
+  --srcery-light-bright-yellow: #6D4A01;
+  --srcery-light-bright-blue: #19538A;
+  --srcery-light-bright-magenta: #A50033;
+  --srcery-light-bright-cyan: #0C5B53;
+  --srcery-light-bright-white: #121110;
+  --srcery-light-dark-green: #D9E8D9;
+  --srcery-light-dark-red: #EDD5D4;
+  --srcery-light-dark-blue: #CDE1F3;
+  --srcery-light-dim-green: #CCE5CC;
+  --srcery-light-orange: #9A3900;
+  --srcery-light-bright-orange: #7C4200;
+  --srcery-light-teal: #006363;
+  --srcery-light-gray1: #E7DECD;
+  --srcery-light-gray2: #E3DBC5;
+  --srcery-light-gray3: #DFD1BD;
+  --srcery-light-gray4: #DBCEB5;
+  --srcery-light-gray5: #D7CBAD;
+  --srcery-light-gray6: #77726A;
+  --srcery-light-hard-black: #FDEDCF;
+}

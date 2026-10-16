@@ -61,6 +61,13 @@ Check out [🌐 srcery.sh](https://srcery.sh) and [Github](https://github.com/sr
 | ![hard_black](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/hard_black_24.jpg) | hard_black  | 232 | `#0E0D0C` | `rgb(14 13 12)` | `hsl(30 5% 5%)` |
 
 
+## Srcery Light candidate
+
+A proposed light palette uses canonical Srcery hue families on `#FCE8C3`.
+See [the light candidate](light/README.md), [detailed analysis](light/ANALYSIS.md)
+and [current dark/light comparisons](light/comparison/comparison.md).
+The existing dark palette and package exports remain the default.
+
 ## Installation
 
 Using git:

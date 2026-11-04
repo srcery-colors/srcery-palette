@@ -48,7 +48,7 @@ Check out [🌐 srcery.sh](https://srcery.sh) and [Github](https://github.com/sr
 | ![dark_green](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/dark_green_24.jpg) | dark_green  | 22 | `#294229` | `rgb(41, 66, 41)` | `hsl(120, 23%, 21%)` |
 | ![dark_red](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/dark_red_24.jpg) | dark_red  | 88 | `#4F2321` | `rgb(79, 35, 33)` | `hsl(3, 41%, 22%)` |
 | ![dark_blue](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/dark_blue_24.jpg) | dark_blue  | 24 | `#1E5181` | `rgb(30, 81, 129)` | `hsl(209, 62%, 31%)` |
-| ![dim_green](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/dim_green_24.jpg) | dim_green  | n/a | `#2E5C2E` | `rgb(46, 92, 46)` | `hsl(119, 33%, 27%)` |
+| ![dim_green](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/dim_green_24.jpg) | dim_green  | 28 | `#2E5C2E` | `rgb(46, 92, 46)` | `hsl(119, 33%, 27%)` |
 | ![orange](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/orange_24.jpg) | orange  | 202 | `#FF5F00` | `rgb(255, 95, 0)` | `hsl(22, 100%, 50%)` |
 | ![bright_orange](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/bright_orange_24.jpg) | bright_orange  | 208 | `#FF8700` | `rgb(255, 135, 0)` | `hsl(32, 100%, 50%)` |
 | ![teal](https://raw.githubusercontent.com/srcery-colors/srcery-assets/master/swatch/teal_24.jpg) | teal  | 30 | `#008080` | `rgb(0, 128, 128)` | `hsl(180, 100%, 25%)` |

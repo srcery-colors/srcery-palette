@@ -1,0 +1,42 @@
+[
+  {
+    "editor": "vim",
+    "mode": "gui",
+    "group": "PmenuSel",
+    "context": "selection fill vs menu",
+    "fg": "#98BC37",
+    "bg": "#E3DBC5",
+    "ratio": 1.5865783688843877,
+    "target": 3.0
+  },
+  {
+    "editor": "vim",
+    "mode": "cterm",
+    "group": "PmenuSel",
+    "context": "selection fill vs menu",
+    "fg": "#87AF5F",
+    "bg": "#D7D7D7",
+    "ratio": 1.75214674830726,
+    "target": 3.0
+  },
+  {
+    "editor": "nvim",
+    "mode": "gui",
+    "group": "PmenuSel",
+    "context": "selection fill vs menu",
+    "fg": "#98BC37",
+    "bg": "#E3DBC5",
+    "ratio": 1.5865783688843877,
+    "target": 3.0
+  },
+  {
+    "editor": "nvim",
+    "mode": "cterm",
+    "group": "PmenuSel",
+    "context": "selection fill vs menu",
+    "fg": "#87AF5F",
+    "bg": "#D7D7D7",
+    "ratio": 1.75214674830726,
+    "target": 3.0
+  }
+]

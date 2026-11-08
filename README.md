@@ -69,6 +69,11 @@ Using git:
 git clone https://github.com/srcery-colors/srcery-palette.git
 ```
 
+Using pnpm:
+```sh
+pnpm add @srcery-colors/srcery-palette
+```
+
 Using npm:
 ```sh
 npm i @srcery-colors/srcery-palette

@@ -170,6 +170,15 @@
     "termcol": null,
     "var": "g:srcery_dark_blue"
   },
+  "dark_yellow": {
+    "css": "--srcery-palette-dark-yellow",
+    "hex": "#433519",
+    "hsl": [40, "46%", "18%"],
+    "index": 94,
+    "rgb": [67, 53, 25],
+    "termcol": null,
+    "var": "g:srcery_dark_yellow"
+  },
   "dim_green": {
     "css": "--srcery-palette-dim-green",
     "hex": "#2E5C2E",

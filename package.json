@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "node build.mjs",
-    "prepare": "npm run build",
+    "prepare": "node build.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,5 +25,11 @@
   "bugs": {
     "url": "https://github.com/srcery-colors/srcery-palette/issues"
   },
-  "homepage": "https://srcery.sh"
+  "homepage": "https://srcery.sh",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": ">=12.0.0 <13.0.0"
+    }
+  }
 }

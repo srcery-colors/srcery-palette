@@ -27,6 +27,11 @@
   },
   "homepage": "https://srcery.sh",
   "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=26.13.0",
+      "onFail": "error"
+    },
     "packageManager": {
       "name": "pnpm",
       "version": ">=12.0.0 <13.0.0"

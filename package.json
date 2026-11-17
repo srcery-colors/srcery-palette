@@ -4,6 +4,16 @@
   "main": "./srcery.js",
   "style": "./srcery.css",
   "description": "Srcery palette exposed as a package, used in other projects",
+  "keywords": [
+    "srcery",
+    "palette",
+    "color-palette",
+    "colors",
+    "design-tokens",
+    "css-variables",
+    "dark-theme",
+    "theme"
+  ],
   "files": [
     "srcery.js",
     "srcery.css",

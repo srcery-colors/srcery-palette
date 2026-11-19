@@ -38,8 +38,8 @@ jobs:
     timeout-minutes: 10
     environment: publish
     permissions:
-      contents: write # Publish the draft release once npm accepts the package.
-      id-token: write # Publish with npm OIDC trusted publishing (also signs provenance).
+      contents: read
+      id-token: write # Stage with npm OIDC trusted publishing (also signs provenance).
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -51,8 +51,5 @@ jobs:
           cache: false
           require-lockfile: true
       - run: pnpm build
-      - run: pnpm publish --access public --no-git-checks
-      - name: Publish draft release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release edit "$GITHUB_REF_NAME" -R "$GITHUB_REPOSITORY" --draft=false
+      # The trusted publisher only allows staged publishes; a maintainer approves with 2FA, then publishes the draft release.
+      - run: pnpm stage publish --access public --no-git-checks

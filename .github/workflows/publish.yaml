@@ -51,5 +51,5 @@ jobs:
           cache: false
           require-lockfile: true
       - run: pnpm build
-      # npm >= 11.5.1 exchanges the OIDC token itself; no NPM_TOKEN is used.
-      - run: npm publish --access public
+      # No NPM_TOKEN: the npm CLI (>= 11.5.1) exchanges the OIDC token itself.
+      - run: pnpm publish --access public --no-git-checks

@@ -31,6 +31,7 @@ export default {
     [
       "@semantic-release/github",
       {
+        draftRelease: true,
         failComment: false,
         failTitle: false,
         labels: false,

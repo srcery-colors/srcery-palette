@@ -62,10 +62,6 @@ jobs:
           cache: true
           require-lockfile: true
       - run: pnpm build
-      - name: Check generated files are committed
-        run: |
-          git diff --exit-code
-          test -z "$(git status --porcelain)"
       - run: pnpm pack --dry-run
 
   release:

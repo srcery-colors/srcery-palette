@@ -29,20 +29,17 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Verify release tag
+      # Staged versions are not public, so the public registry only lists approved ones.
+      - name: Verify release tag and check npm and release state
+        id: state
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           version=$(node -p 'require("./package.json").version')
           [[ "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
           test "$GITHUB_REF_NAME" = "v$version"
           git merge-base --is-ancestor "$GITHUB_SHA" origin/main
-      # Staged versions are not public, so the public registry only lists approved ones.
-      - name: Check npm and release state
-        id: state
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
           name=$(node -p 'require("./package.json").name')
-          version=$(node -p 'require("./package.json").version')
           # Not npm view: devEngines requires pnpm, so npm refuses to run in this checkout.
           registry="https://registry.npmjs.org/${name/\//%2f}"
           packument=$(curl -fsS "$registry")
@@ -98,7 +95,7 @@ jobs:
             fi
             sleep 30
           done
-          echo "::error::$GITHUB_REF_NAME is not live on npm after 2 hours. Approve it on npmjs.com, then run this workflow again at the tag."
+          echo "::error::$GITHUB_REF_NAME is not live on npm after 2 hours. Approve it on npmjs.com, wait 5 minutes (the registry caches for that long), then run this workflow again at the tag. If you rejected it, release a new version instead."
           exit 1
       - name: Publish draft release
         env:

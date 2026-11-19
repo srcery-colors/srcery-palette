@@ -23,6 +23,7 @@ jobs:
     outputs:
       live: ${{ steps.state.outputs.live }}
       draft: ${{ steps.state.outputs.draft }}
+      registry: ${{ steps.state.outputs.registry }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -43,11 +44,15 @@ jobs:
           name=$(node -p 'require("./package.json").name')
           version=$(node -p 'require("./package.json").version')
           # Not npm view: devEngines requires pnpm, so npm refuses to run in this checkout.
-          packument=$(curl -fsS "https://registry.npmjs.org/${name/\//%2f}")
+          registry="https://registry.npmjs.org/${name/\//%2f}"
+          packument=$(curl -fsS "$registry")
           live=$(jq --arg v "$version" '.versions | has($v)' <<<"$packument")
           draft=$(gh release view "$GITHUB_REF_NAME" -R "$GITHUB_REPOSITORY" --json isDraft --jq .isDraft)
-          echo "live=$live" >> "$GITHUB_OUTPUT"
-          echo "draft=$draft" >> "$GITHUB_OUTPUT"
+          {
+            echo "live=$live"
+            echo "draft=$draft"
+            echo "registry=$registry"
+          } >> "$GITHUB_OUTPUT"
 
   publish:
     needs: verify
@@ -71,16 +76,30 @@ jobs:
       - run: pnpm build
       # The trusted publisher only allows staged publishes; a maintainer approves the version with 2FA.
       - run: pnpm stage publish --access public --no-git-checks
-      - run: echo "Staged $GITHUB_REF_NAME. Approve it on npmjs.com, then run this workflow again at the tag to publish the GitHub release." >> "$GITHUB_STEP_SUMMARY"
+      - run: echo "Staged $GITHUB_REF_NAME. Approve it on npmjs.com within 2 hours; the release job then publishes the GitHub release." >> "$GITHUB_STEP_SUMMARY"
 
   release:
-    needs: verify
-    if: needs.verify.outputs.live == 'true' && needs.verify.outputs.draft == 'true'
+    needs: [verify, publish]
+    if: ${{ !cancelled() && needs.verify.result == 'success' && needs.verify.outputs.draft == 'true' && (needs.verify.outputs.live == 'true' || needs.publish.result == 'success') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 125
     permissions:
       contents: write # Publish the draft release.
     steps:
+      # Failing here is the reminder: approve on npmjs.com, then run this workflow again at the tag.
+      - name: Wait for npm approval (up to 2 hours)
+        env:
+          REGISTRY_URL: ${{ needs.verify.outputs.registry }}
+        run: |
+          version=${GITHUB_REF_NAME#v}
+          while (( SECONDS < 7200 )); do
+            if curl -fsS "$REGISTRY_URL" | jq -e --arg v "$version" '.versions | has($v)' >/dev/null; then
+              exit 0
+            fi
+            sleep 30
+          done
+          echo "::error::$GITHUB_REF_NAME is not live on npm after 2 hours. Approve it on npmjs.com, then run this workflow again at the tag."
+          exit 1
       - name: Publish draft release
         env:
           GH_TOKEN: ${{ github.token }}

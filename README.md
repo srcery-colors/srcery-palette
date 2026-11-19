@@ -98,11 +98,24 @@ import palette from "@srcery-colors/srcery-palette";
 console.log(palette.red.hex);
 ```
 
-The package also exports CSS variables that can be imported
+The package also ships the colors as CSS variables in `srcery.css`:
 
 ```css
-@import "@srcery-colors/srcery-palette";
-background: var(--srcery-palette-black);
+@import "@srcery-colors/srcery-palette/srcery.css";
+
+body {
+  background: var(--srcery-palette-black);
+  color: var(--srcery-palette-bright-white);
+}
 ```
+
+Without a build step, import it from a CDN instead:
+
+```css
+@import "https://cdn.jsdelivr.net/npm/@srcery-colors/srcery-palette@2/srcery.css";
+```
+
+`@2` follows the latest 2.x release. Pin a full version, such as `@2.1.1`, to
+keep the colors fixed.
 
 See `palette.json` for a full list of variable names, but it follows the same structure as demonstrated.

@@ -36,7 +36,7 @@ jobs:
     needs: verify
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    environment: npm
+    environment: publish
     permissions:
       contents: read
       id-token: write # Publish with npm OIDC trusted publishing (also signs provenance).

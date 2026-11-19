@@ -67,3 +67,40 @@ jobs:
           git diff --exit-code
           test -z "$(git status --porcelain)"
       - run: pnpm pack --dry-run
+
+  release:
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: release
+    # Block all cache restores and saves, including pnpm/setup's verification cache.
+    cache-mode: none
+    concurrency:
+      group: release-${{ github.ref }}
+      cancel-in-progress: false
+    # Writes use the srcery-colors App token, not the workflow token.
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: pnpm/setup@v3.2.0
+        env:
+          pnpm_config_ignore_scripts: "true"
+        with:
+          cache: false
+          require-lockfile: true
+      - id: app-token
+        uses: actions/create-github-app-token@v3.3.0
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write # Create release commits, tags, and releases.
+          permission-actions: write # Dispatch publication at the new tag.
+      - run: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
